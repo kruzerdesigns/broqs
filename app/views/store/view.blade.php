@@ -6,7 +6,7 @@
 
         <h1>{{ $product->title }}</h1>
         <!-- Product Image -->
-        <div id="small-12 medium-6 large-8 columns">
+        <div class="small-12 medium-6 large-8 columns">
             {{ HTML::image($product->image,$product->title) }}
         </div>
 
@@ -23,11 +23,12 @@
                 </button>
             </form>
         </div>
+</section>
 
-
+<section class="row">
         <!--Product Discription -->
 
-        <dl class="tabs vertical" data-tab>
+        <dl class="tabs" data-tab>
             <dd class="active"><a href="#panel1">Description</a></dd>
             <dd><a href="#panel2">Tab 2</a></dd>
             <dd><a href="#panel3">Tab 3</a></dd>

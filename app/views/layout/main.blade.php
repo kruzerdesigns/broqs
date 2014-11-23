@@ -18,11 +18,30 @@
 <body>
     <main>
         <header>
+
             <section class="grey">
+
                 <div class="row">
-                    <ul class="right inline-list">
-                        <li>Sign in</li>
-                    </ul>
+                    <div class="right">
+                         @if(Auth::check())
+                            <ul class="inline-list">
+                                @if(Auth::user()->admin == 1)
+                                    <li>{{ HTML::link('admin/categories','Categories') }}</li>
+                                @endif
+                                <li>
+                                    <a href="">{{ HTML::link('users/account', Auth::user()->firstname) }}</a>
+                                </li>
+                                <li>{{ HTML::link('users/signout','Log Out') }}</li>
+
+                            </ul>
+                         @else
+                            <ul class="inline-list">
+                                <li>{{ HTML::link('users/signin','Sign In') }}</li>
+                                <li>{{ HTML::link('users/newaccount','Register') }}</li>
+                            </ul>
+                         @endif
+                     </div>
+
                 </div>
             </section>
 
@@ -47,17 +66,17 @@
                     <ul class="right">
                         <li class="has-form">
                             <div class="row collapse">
-                                <form action="#" method="get">
+                                {{ Form::open(array('url' => 'store/search', 'method' => 'get')) }}
 
                                     <div class="large-8 small-9 columns">
-                                        <input type="text" placeholder="Search Products">
+                                        {{ Form::text('keyword', null, array('placeholder'=>'Search Products')) }}
                                     </div>
 
                                     <div class="large-4 small-3 columns">
-                                        <input type="submit" class="button" value="Search">
+                                        {{ Form::submit('Search', array('class'=>'button')) }}
                                     </div>
 
-                                </form>
+                                {{ Form::close() }}
                             </div>
                         </li>
                         <li>Basket (0) items</li>
@@ -78,6 +97,7 @@
         </header>
 
         @yield('promo')
+        @yield('search-keyword')
 
         @if (Session::has('message'))
             <p class="alert-box">{{ Session::get('message') }}</p>

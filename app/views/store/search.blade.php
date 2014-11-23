@@ -1,9 +1,10 @@
 @extends('layout.main')
 
-@section('promo')
+@section('search-keyword')
 
     <section class="row">
-        Slider perhaps
+        <header><h1>Search Results for <span class="red">{{ $keyword }}</span> </h1></header>
+
     </section>
 
 @stop
@@ -11,7 +12,6 @@
 @section('content')
 
     <section class="row">
-        <h2>New Products</h2>
 
         @foreach($products as $product)
 
@@ -20,7 +20,7 @@
                     {{ HTML::image($product->image,$product->title, array('class'=>'feature','width'=>'240')) }}
                 </a>
 
-                <h3><a href="/store/view/{{ $product->id }}">{{ $product->title }}</a></h3>
+                <h3><a href="http://localhost/broq/public/store/view/{{ $product->id }}">{{ $product->title }}</a></h3>
 
                 <p>{{ $product->description }}</p>
 
