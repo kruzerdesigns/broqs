@@ -20,16 +20,23 @@
                     {{ HTML::image($product->image,$product->title, array('class'=>'feature','width'=>'240')) }}
                 </a>
 
-                <h3><a href="/store/view/{{ $product->id }}">{{ $product->title }}</a></h3>
+                <h3><a href="http://localhost/broq/public/store/view/{{ $product->id }}">{{ $product->title }}</a></h3>
 
                 <p>{{ $product->description }}</p>
 
                 <p>
-                    <a href="" class="button">
-                        {{ $product->price }}
-                        {{ HTML::image('img/white-cart.gif', 'Add to cart') }}
-                        Add to cart
-                    </a>
+                    
+                    {{ Form::open(array('url'=>'store/addtocart')) }}
+                        {{ Form::hidden('quantity',1) }}
+                        {{ Form::hidden('id',$product->id) }}
+
+                        <button type="submit" class="button">
+                            {{ $product->price }}
+                            {{ HTML::image('img/white-cart.gif', 'Add to cart') }}
+                            Add To Cart
+                        </button>
+
+                    {{ Form::close() }}
                 </p>
             </div>
 

@@ -45,11 +45,6 @@
                 </div>
             </section>
 
-            <section class="top-header">
-                <!-- insert broq header image -->
-
-            </section>
-
             <section class="contain-to-grid sticky">
                 <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
                 <section class="top-bar-section">
@@ -79,7 +74,7 @@
                                 {{ Form::close() }}
                             </div>
                         </li>
-                        <li>Basket (0) items</li>
+                        <li><a href="http://localhost/broq/public/store/cart">Basket</a></li>
                     </ul>
 
                     <!-- Left of nav -->
@@ -111,7 +106,7 @@
             <section class="row hidden-for-medium-down">
 
                 <div class="large-4 columns">
-                    <h4>MY ACCOUNT</h4>
+                    <h4>Links</h4>
                     <ul>
                         <li><a href="#">Sign In</a></li>
                         <li><a href="#">Sign Up</a></li>
@@ -142,26 +137,7 @@
 
             <section class="row">
 
-                <div class="large-4 columns">
-                    <div id="logo">
-                        <a href="#"><span id="logo-accent">e</span>Commerce</a>
-                    </div>
-                    <p id="store-desc">Broq clothing store</p>
-                    <p id="store-copy">&copy; 2014</p>
-                </div>
 
-                <div class="large-4 columns">
-                    <h4>CONNECT WITH US</h4>
-                    <ul>
-                        <li class="twitter"><a href="#">Twitter</a></li>
-                        <li class="fb"><a href="#">Facebook</a></li>
-                    </ul>
-                </div>
-
-                <div class="large-4 columns">
-                    <h4>SUPPORTED PAYMENT METHODS</h4>
-                    {{ HTML::image('img/payment-methods.gif','Payment Method') }}
-                </div>
 
             </section>
 

@@ -4,6 +4,7 @@ class StoreController extends BaseController{
 
     public function __construct(){
         $this->beforeFilter('csrf',array('on' =>'post'));
+        $this->beforeFilter('auth',array('only'=>array('postAddtoCart','getCart','getRemoveitem')));
     }
 
     public function getIndex(){
@@ -28,5 +29,61 @@ class StoreController extends BaseController{
         return View::make('store.search')
             ->with('products', Product::where('title','LIKE', '%'.$keyword.'%')->get())
             ->with('keyword', $keyword);
+    }
+
+    public function postAddtocart(){
+        $product = Product::find(Input::get('id'));
+        $quantity = Input::get('quantity');
+
+        Cart::insert(array(
+           'id'         =>$product->id,
+            'name'      =>$product->title,
+            'price'     =>$product->price,
+            'quantity'  =>$quantity,
+            'image' =>$product->image
+        ));
+
+        return Redirect::to('store/cart');
+    }
+
+    public function getCart(){
+        return View::make('store.cart')
+            ->with('products',Cart::contents());
+    }
+
+    public function getRemoveitem($identifier){
+        $item = Cart::item($identifier);
+        $item->remove();
+
+        return Redirect::to('store/cart');
+    }
+
+    public function getContact(){
+        return View::make('store.contact');
+    }
+
+    public function postContact(){
+
+        $data = array(
+            'name' => Input::get('name'),
+            'email' => Input::get('email'),
+            'comment' => Input::get('comment')
+        );
+
+        Mail::send('emails.contact',$data ,function($message)
+        {
+
+           $message->to('yousuf@kruzerdesigns.com')->subject('Contact Form');
+
+
+        });
+
+
+
+        return Redirect::to('store/contact')->with('message','Email has been sent');
+
+       /* echo Input::get('name').'<br>';
+        echo Input::get('email').'<br>';
+        echo Input::get('message').'<br>';*/
     }
 }

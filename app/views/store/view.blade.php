@@ -13,15 +13,18 @@
         <!-- Cart button and quantity -->
         <div class="small-12 medium-6 large-4 columns end">
             <p> {{ $product->price }}</p>
-            <form action="#" method="post">
-                <label for="qty">Qty:</label>
-                <input type="text" id="qty" name="qty" value="1" maxlength="2">
+            {{ Form::open(array('url'=>'store/addtocart')) }}
+
+                {{ Form::label('quantity','Qty') }}
+                {{ Form::text('quantity',1, array('maxlength'=>2)) }}
+                {{ Form::hidden('id', $product->id) }}
 
                 <button type="submit" class="button">
                     {{ HTML::image('img/white-cart.gif', 'Add to cart') }}
                     ADD TO CART
                 </button>
-            </form>
+
+            {{ Form::close() }}
         </div>
 </section>
 
