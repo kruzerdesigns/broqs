@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" >
 <head>
     <meta charset="utf-8">
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>eCommerce - Product</title>
 
@@ -74,7 +75,7 @@
                                 {{ Form::close() }}
                             </div>
                         </li>
-                        <li><a href="http://localhost/broq/public/store/cart">Basket</a></li>
+                        <li><a href="<?=url()?>store/cart">Basket</a></li>
                     </ul>
 
                     <!-- Left of nav -->
@@ -148,6 +149,7 @@
     {<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     {{ HTML::script('js/plugins.js') }}
     {{ HTML::script('js/foundation.min.js') }}
+    {{ HTML::script('js/foundation.reveal.js') }}
     {{ HTML::script('js/main.js') }}
 
 </body>

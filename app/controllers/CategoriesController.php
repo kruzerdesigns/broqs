@@ -1,5 +1,5 @@
 <?php
-
+/*
 class CategoriesController extends BaseController{
 
     public function __construct(){
@@ -45,4 +45,4 @@ class CategoriesController extends BaseController{
             ->with('message', 'Something went wrong, please try again');
     }
 
-}
+}*/

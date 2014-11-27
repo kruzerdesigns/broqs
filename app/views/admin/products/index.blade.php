@@ -1,75 +1,95 @@
-@extends('layout.main')
+@extends('layout.admin')
 
 @section('content')
 
-    <section class="row">
-        <h1>Products Admin Panel</h1>
+             @if($errors->has())
+                <div class="alert-box alert" data-alert>
+                    <p>Following errors have occurred</p>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <a href="#" class="close">&times;</a>
+                </div>
+            @endif
 
-        <p>Here you can view, delete, create new Products</p>
-
-        <h2>Products</h2>
-
-        <ul>
-            @foreach($products as $product)
-                <li>
-                    {{ HTML::image($product->image, $product->title, array('width'=>'50')) }}
-                    {{ $product->title }} -
-                    {{ Form::open(array('url' =>'admin/products/destroy' )) }}
-                        {{ Form::hidden('id', $product->id) }}
-                        {{ Form::submit('Delete') }}
-                    {{ Form::close() }} -
-
-                    {{ Form::open(array('url' =>'admin/products/toggle-availability')) }}
-                        {{ Form::hidden('id',$product->id) }}
-                        {{ Form::select('availability', array('1' => 'In Stock', '0' => 'Out of Stock'), $product->availability) }}
-                        {{ Form::submit('Update', array('class' => 'button')) }}
-                    {{ Form::close() }}
-                </li>
-            @endforeach
-        </ul>
-    </section>
-
-    <section class="row">
-        <h2>Create new Products</h2>
-
-        @if($errors->has())
-            <div class="alert-box" data-alert>
-                <p>Following errors have occurred</p>
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-                <a href="#" class="close">&times;</a>
+            <div class="large-6 columns">
+                <h1>View all products </h1>
+                <p>Here you can view, delete, create new Products</p>
             </div>
-        @endif
+            <div class="large-3 columns end">
+                <a href="#" class="button small info" data-reveal-id="create">Create a product</a>
+            </div>
 
-        {{ Form::open(array('url' => 'admin/products/create', 'files'=>true)) }}
-        <p>
-            {{ Form::label('category_id', 'Category') }}
-            {{ Form::select('category_id',$categories) }}
-        </p>
-        <p>
-            {{ Form::label('title') }}
-            {{ Form::text('title') }}
-        </p>
-        <p>
-            {{ Form::label('description') }}
-            {{ Form::textarea('description') }}
-        </p>
-        <p>
-            {{ Form::label('price') }}
-            {{ Form::text('price', null) }}
-        </p>
-        <p>
-            {{ Form::label('image', 'Choose an Image') }}
-            {{ Form::file('image') }}
-        </p>
 
-        {{ Form::submit('Create Product', array('class'=>'button')) }}
-        {{ Form::close() }}
+            <hr>
+
+
+        <div class="large-7">
+             @foreach($products as $product)
+
+                <div class="row">
+                    <div class="large-2 columns">
+                        {{ HTML::image($product->image, $product->title, array('width'=>'50')) }}
+                    </div>
+
+                    <div class="large-3 columns">
+                        {{ $product->title }}
+                    </div>
+
+                    <div class="large-2 columns">
+                        {{ HTML::link('admin/products/amend/'.$product->id,'Edit',array('class'=>'button tiny success')) }}
+                    </div>
+
+                    <div class="large-2 columns end">
+                        {{ Form::open(array('url' =>'admin/destroyproducts' )) }}
+                            {{ Form::hidden('id', $product->id) }}
+                             <button class="button alert tiny " type="submit"><i class="fa fa-trash"></i></button>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+                <br>
+
+             @endforeach
+        </div>
 
 
     </section>
+
+
+
+
+
+
+
+
+        <div id="create" class="reveal-modal" data-reveal>
+            <a class="close-reveal-modal">&#215;</a>
+                <h2>Create a new product</h2>
+
+                    {{ Form::open(array('url' => 'admin/createproducts', 'files'=>true)) }}
+
+                                {{ Form::label('category_id', 'Category') }}
+                                {{ Form::select('category_id',$categories) }}
+
+                                {{ Form::label('title','Product Title',array('class'=>'strong')) }}
+                                {{ Form::text('title') }}
+
+                                {{ Form::label('description','Product Description',array('class'=>'strong')) }}
+                                {{ Form::textarea('description') }}
+                                <br>
+                                {{ Form::label('price',null,array('class'=>'strong')) }}
+                                {{ Form::text('price', null) }}
+
+                                {{ Form::label('image', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('image') }}
+
+
+                            {{ Form::submit('Create Product', array('class'=>'button small info')) }}
+                            {{ Form::close() }}
+
+
+            </div>
 
 @stop

@@ -7,3 +7,22 @@
 
 /* Footer*/
 footer{background: #eee;}
+
+
+
+
+
+/*******************************************************************
+***************************   ADMIN   ******************************
+*******************************************************************/
+.admin-content{padding-top: 60px;}
+.admin-nav li a{color:#fff !important;}
+.fixed-side {width: 15%;    left: 0;    position: fixed;    top: 0;    padding-top: 45px; background: #333; height: 100%;}
+.f-topbar-fixed{padding-top: 0 !important;}
+.strong{font-size: 16px; font-weight: bold;}
+.soft-blue{color: #005299;  }
+.soft-blue-bg{background: #005299; !important;  }
+.soft-green{color: #43ac6a;  }
+.soft-green-bg{background: #43ac6a; !important;  }
+.soft-red{color: #CD3F3F;  }
+.soft-red-bg{background: #CD3F3F; !important; }
