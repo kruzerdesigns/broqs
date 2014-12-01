@@ -1,8 +1,20 @@
 /* Global */
 .grey{background: #eee;}
+a {color: #B92424}
+a:hover {color: #4E0E0E;}
+
+.button {background: #B92424 ; border-color: #B92424 ;}
+.button:hover {background: #761010 ; border-color: #761010 ;}
 
 /* Header */
 .top-header{height:200px; background: #2e373f;}
+.top-nav{height:25px;}
+.top-nav ul li a { font-size: 14px !important;}
+.top-bar-section ul.title-area li h1 a {   background: #B92424 !important;}
+.top-bar .button, .top-bar button {     padding-top: 0;}
+
+/* index */
+.products-index img.feature{ width:50%;}
 
 
 /* Footer*/
@@ -26,3 +38,4 @@ footer{background: #eee;}
 .soft-green-bg{background: #43ac6a; !important;  }
 .soft-red{color: #CD3F3F;  }
 .soft-red-bg{background: #CD3F3F; !important; }
+.image-upload{height:200px;}

@@ -20,14 +20,14 @@
     <main>
         <header>
 
-            <section class="grey">
+            <section class="grey top-nav">
 
                 <div class="row">
                     <div class="right">
                          @if(Auth::check())
                             <ul class="inline-list">
                                 @if(Auth::user()->admin == 1)
-                                    <li>{{ HTML::link('admin/categories','Categories') }}</li>
+                                    <li>{{ HTML::link('admin','Admin') }}</li>
                                 @endif
                                 <li>
                                     <a href="">{{ HTML::link('users/account', Auth::user()->firstname) }}</a>
@@ -50,9 +50,9 @@
                 <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
                 <section class="top-bar-section">
                     <!-- mobile view of nav -->
-                    <ul class="title-area show-for-medium-down">
+                    <ul class="title-area">
                         <li class="name">
-                            <h1><a href="/">Brog</a></h1>
+                            <h1><a href="<?=url()?>">B.r.o.q</a></h1>
                         </li>
 
                         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -61,26 +61,26 @@
                     <!-- right of nav -->
                     <ul class="right">
                         <li class="has-form">
-                            <div class="row collapse">
-                                {{ Form::open(array('url' => 'store/search', 'method' => 'get')) }}
+                            {{ Form::open(array('url' => 'store/search', 'method' => 'get')) }}
 
-                                    <div class="large-8 small-9 columns">
-                                        {{ Form::text('keyword', null, array('placeholder'=>'Search Products')) }}
+                                    <div class="row collapse">
+                                            <div class="large-8  columns">
+                                                {{ Form::text('keyword', null, array('placeholder'=>'Search Products')) }}
+                                            </div>
+
+                                            <div class="large-4 columns ">
+                                                {{ Form::submit('Search', array('class'=>'button postfix')) }}
+                                            </div>
                                     </div>
 
-                                    <div class="large-4 small-3 columns">
-                                        {{ Form::submit('Search', array('class'=>'button')) }}
-                                    </div>
-
-                                {{ Form::close() }}
-                            </div>
+                            {{ Form::close() }}
                         </li>
+
                         <li><a href="<?=url()?>store/cart">Basket</a></li>
                     </ul>
 
                     <!-- Left of nav -->
                     <ul class="left">
-                        <li><a href="{{ URL::to('/') }}">Broq</a></li>
                         <li><a href="#">Link</a></li>
                         <li><a href="#">Link</a></li>
                         <li><a href="#">Link</a></li>

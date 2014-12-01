@@ -10,11 +10,16 @@
     <!-- Stylesheets -->
     {{ HTML::style('css/normalize.css') }}
     {{ HTML::style('css/foundation.min.css') }}
+    {{ HTML::style('css/font-awesome.min.css') }}
+
+
 
     {{ HTML::style('css/style.css') }}
+    {{ HTML::script('js/jquery-1.11.1.min.js') }}
     {{ HTML::script('js/vendor/modernizr-2.6.2.min.js') }}
     {{ HTML::script('js/tinymce/tinymce.min.js') }}
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
 
    <script type="text/javascript">
    tinymce.init({
@@ -106,6 +111,9 @@
 
         </section>
 
+        <footer class="row">
+        </footer>
+
 
 
 
@@ -114,9 +122,11 @@
 
 
     </main>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
     {{ HTML::script('js/plugins.js') }}
     {{ HTML::script('js/foundation.min.js') }}
+
     {{ HTML::script('js/main.js') }}
 </body>
 </html>

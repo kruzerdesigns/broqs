@@ -19,7 +19,7 @@
                 <p>Here you can view, delete, create new Products</p>
             </div>
             <div class="large-3 columns end">
-                <a href="#" class="button small info" data-reveal-id="create">Create a product</a>
+                <button class="button small info" id="createPr">Create a product</button>
             </div>
 
 
@@ -31,7 +31,7 @@
 
                 <div class="row">
                     <div class="large-2 columns">
-                        {{ HTML::image($product->image, $product->title, array('width'=>'50')) }}
+                        {{ HTML::image($product->image_1, $product->title, array('width'=>'50')) }}
                     </div>
 
                     <div class="large-3 columns">
@@ -59,14 +59,12 @@
 
 
 
+<section class="row">
+
+        <div id="create">
+              <h2>Create a new product</h2>
 
 
-
-
-
-        <div id="create" class="reveal-modal" data-reveal>
-            <a class="close-reveal-modal">&#215;</a>
-                <h2>Create a new product</h2>
 
                     {{ Form::open(array('url' => 'admin/createproducts', 'files'=>true)) }}
 
@@ -81,9 +79,59 @@
                                 <br>
                                 {{ Form::label('price',null,array('class'=>'strong')) }}
                                 {{ Form::text('price', null) }}
+                                <div id="image_1">
+                                {{ Form::label('images_1', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('images_1', array('multiple'=>true)) }}
+                                </div>
+                                <div id="image_2">
+                                {{ Form::label('images_2', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('images_2', array('multiple'=>true)) }}
+                                </div>
+                                <div id="image_3">
+                                {{ Form::label('images_3', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('images_3', array('multiple'=>true)) }}
+                                </div>
+                                <div id="image_4">
+                                {{ Form::label('images_4', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('images_4', array('multiple'=>true)) }}
+                                </div>
+                                 <div id="image_5">
+                                {{ Form::label('images_5', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('image_5', array('multiple'=>true)) }}
+                                </div>
+                                 <div id="image_6">
+                                {{ Form::label('images_6', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('images_6', array('multiple'=>true)) }}
+                                </div>
+                                 <div id="image_7">
+                                {{ Form::label('images_7', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('images_7', array('multiple'=>true)) }}
+                                </div>
+                                 <div id="image_8">
+                                {{ Form::label('images_8', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('images_8', array('multiple'=>true)) }}
+                                </div>
+                                 <div id="image_9">
+                                {{ Form::label('images_9', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('images_9', array('multiple'=>true)) }}
+                                </div>
+                                 <div id="image_10">
+                                {{ Form::label('images_10', 'Choose an Image',array('class'=>'strong')) }}
+                                {{ Form::file('images_10', array('multiple'=>true)) }}
+                                </div>
+                                <!--
+                               <div class="image-upload">
+                                       <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
 
-                                {{ Form::label('image', 'Choose an Image',array('class'=>'strong')) }}
-                                {{ Form::file('image') }}
+
+
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple />
+                                             </div>
+                               </div>
+
+                                -->
+
 
 
                             {{ Form::submit('Create Product', array('class'=>'button small info')) }}
@@ -91,5 +139,86 @@
 
 
             </div>
+</section>
 
+
+<script language="javascript">
+$( document ).ready(function() {
+
+
+    $('div#create').hide();
+    $( "button#createPr" ).click(function() {
+      $( "div#create" ).show();
+    });
+
+    $('div#image_2').hide();
+    $('div#image_3').hide();
+    $('div#image_4').hide();
+    $('div#image_5').hide();
+    $('div#image_6').hide();
+    $('div#image_7').hide();
+    $('div#image_8').hide();
+    $('div#image_9').hide();
+    $('div#image_10').hide();
+
+    $('#image_1').on('change', function(evt) {
+        var file = evt.target.files[0];
+        if (file)
+            $('#image_2').show();
+    });
+
+    $('#image_2').on('change', function(evt) {
+            var file = evt.target.files[0];
+            if (file)
+                $('#image_3').show();
+        });
+
+    $('#image_3').on('change', function(evt) {
+            var file = evt.target.files[0];
+            if (file)
+                $('#image_4').show();
+        });
+
+    $('#image_4').on('change', function(evt) {
+            var file = evt.target.files[0];
+            if (file)
+                $('#image_5').show();
+        });
+
+    $('#image_5').on('change', function(evt) {
+            var file = evt.target.files[0];
+            if (file)
+                $('#image_6').show();
+        });
+
+    $('#image_6').on('change', function(evt) {
+            var file = evt.target.files[0];
+            if (file)
+                $('#image_7').show();
+        });
+
+
+    $('#image_7').on('change', function(evt) {
+            var file = evt.target.files[0];
+            if (file)
+                $('#image_8').show();
+        });
+
+    $('#image_8').on('change', function(evt) {
+                var file = evt.target.files[0];
+                if (file)
+                    $('#image_9').show();
+            });
+
+    $('#image_9').on('change', function(evt) {
+            var file = evt.target.files[0];
+            if (file)
+                $('#image_10').show();
+        });
+
+
+
+});
+
+</script>
 @stop

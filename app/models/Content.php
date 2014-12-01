@@ -2,7 +2,7 @@
 
 class Content extends Eloquent{
 
-    protected $fillable = array('con_id','nav', 'name','meta_title','meta_description','page_content','page_url');
+    protected $fillable = array('con_id','nav', 'name', 'url','meta_title','meta_description','page_content');
 
     protected $table = 'content';
 

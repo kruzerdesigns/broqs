@@ -100,29 +100,234 @@ class AdminController extends BaseController{
             ->with('categories',$categories);
     }
 
-    public function postCreateproducts(){
-        $validator = Validator::make(Input::all(),Product::$rules);
+    public function postCreateproducts()
+    {
 
-        if($validator->passes()){
+
+        $validator = Validator::make(Input::all(), Product::$rules);
+        if ($validator->passes()) {
+            $url              = Input::get('title');
+            $url = strtolower($url);
+            //Make alphanumeric (removes all other characters)
+            $url = preg_replace("/[^a-z0-9_\s-]/", "", $url);
+            //Clean up multiple dashes or whitespaces
+            $url = preg_replace("/[\s-]+/", " ", $url);
+            //Convert whitespaces and underscore to dash
+            $url = preg_replace("/[\s_]/", "-", $url);
+
             $product = new Product;
             $product->category_id = Input::get('category_id');
             $product->title = Input::get('title');
+            $product->url = $url;
             $product->description = Input::get('description');
             $product->price = Input::get('price');
 
-            $image = Input::file('image');
-            $filename = time()."-".$image->getclientOriginalName();
-            Image::make($image->getRealPath())->save('img/products/'.$filename);
-            $product->image = 'img/products/'.$filename;
+            $imgUrl = url().'/img/products/'.$url;
+
+            if(Input::hasFile('images_1')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_1.'.Input::file('images_1')->getClientOriginalExtension();
+                Input::file('images_1')->move($destinationPath, $filename);
+                $product->image_1 = $filename;
+            }
+
+            if(Input::hasFile('images_2')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_2.'.Input::file('images_2')->getClientOriginalExtension();
+                Input::file('images_2')->move($destinationPath, $filename);
+                $product->image_2 = $filename;
+            }
+
+            if(Input::hasFile('images_3')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_3.'.Input::file('images_3')->getClientOriginalExtension();
+                Input::file('images_3')->move($destinationPath, $filename);
+                $product->image_3 = $filename;
+            }
+
+            if(Input::hasFile('images_4')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_4.'.Input::file('images_4')->getClientOriginalExtension();
+                Input::file('images_4')->move($destinationPath, $filename);
+                $product->image_4 = $filename;
+            }
+
+            if(Input::hasFile('images_5')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_5.'.Input::file('images_5')->getClientOriginalExtension();
+                Input::file('images_5')->move($destinationPath, $filename);
+                $product->image_5 = $filename;
+            }
+
+            if(Input::hasFile('images_6')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_6.'.Input::file('images_6')->getClientOriginalExtension();
+                Input::file('images_6')->move($destinationPath, $filename);
+                $product->image_6 = $filename;
+            }
+
+            if(Input::hasFile('images_7')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_1.'.Input::file('images_7')->getClientOriginalExtension();
+                Input::file('images_7')->move($destinationPath, $filename);
+                $product->image_7 = $filename;
+            }
+
+            if(Input::hasFile('images_8')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_8.'.Input::file('images_8')->getClientOriginalExtension();
+                Input::file('images_8')->move($destinationPath, $filename);
+                $product->image_8 = $filename;
+            }
+
+            if(Input::hasFile('images_9')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_9.'.Input::file('images_9')->getClientOriginalExtension();
+                Input::file('images_9')->move($destinationPath, $filename);
+                $product->image_9 = $filename;
+            }
+
+            if(Input::hasFile('images_10')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_10.'.Input::file('images_10')->getClientOriginalExtension();
+                Input::file('images_10')->move($destinationPath, $filename);
+                $product->image_10 = $filename;
+            }
+
+
+          /*  $i=1;
+            foreach($images as $image => $im){
+                $i=$i+1;
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $url.'-'.$i.$im->getClientOriginalExtension();;
+                $im->move($destinationPath, $filename);
+                $product->image.'_'.$i = $filename;
+                $i++;
+            }
+
+*/
+            $product->save();
+
+            return Redirect::to('admin/products')
+                ->with('success', 'Product Created');
+        }
+
+            return Redirect::to('admin/products/index')
+                ->with('error', 'Something went wrong')
+                ->withErrors($validator)
+                ->withInput();
+
+    }
+
+    public function postProductstamend()
+    {
+        $id = Input::get('id');
+        $product = Product::find($id);
+
+        $validator = Validator::make(Input::all(), Product::$rules);
+        if ($validator->passes()) {
+            $url              = Input::get('title');
+            $url = strtolower($url);
+            //Make alphanumeric (removes all other characters)
+            $url = preg_replace("/[^a-z0-9_\s-]/", "", $url);
+            //Clean up multiple dashes or whitespaces
+            $url = preg_replace("/[\s-]+/", " ", $url);
+            //Convert whitespaces and underscore to dash
+            $url = preg_replace("/[\s_]/", "-", $url);
+
+
+
+            $product->title = Input::get('title');
+            #$product->meta_title = Input::get('meta_title');
+            #$product->meta_description = Input::get('meta_description');
+            $product->url = $url;
+            $product->description = Input::get('description');
+            #$product->description_2 = Input::get('description_2');
+            #$product->description_3 = Input::get('description_3');
+            $product->price = Input::get('price');
+            $product->small = Input::get('small');
+            $product->medium = Input::get('medium');
+            $product->large = Input::get('large');
+
+            $imgUrl = url().'/img/products/'.$url;
+
+            if(Input::hasFile('images_1')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_1.'.Input::file('images_1')->getClientOriginalExtension();
+                Input::file('images_1')->move($destinationPath, $filename);
+                $product->image_1 = $filename;
+            }
+
+            if(Input::hasFile('images_2')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_2.'.Input::file('images_2')->getClientOriginalExtension();
+                Input::file('images_2')->move($destinationPath, $filename);
+                $product->image_2 = $filename;            }
+
+            if(Input::hasFile('images_3')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_3.'.Input::file('images_3')->getClientOriginalExtension();
+                Input::file('images_3')->move($destinationPath, $filename);
+                $product->image_3 = $filename;
+            }
+
+            if(Input::hasFile('images_4')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_4.'.Input::file('images_4')->getClientOriginalExtension();
+                Input::file('images_4')->move($destinationPath, $filename);
+                $product->image_4 = $filename;
+            }
+
+            if(Input::hasFile('images_5')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_5.'.Input::file('images_5')->getClientOriginalExtension();
+                Input::file('images_5')->move($destinationPath, $filename);
+                $product->image_5 = $filename;
+            }
+
+            if(Input::hasFile('images_6')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_6.'.Input::file('images_6')->getClientOriginalExtension();
+                Input::file('images_6')->move($destinationPath, $filename);
+                $product->image_6 = $filename;
+            }
+
+            if(Input::hasFile('images_7')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_1.'.Input::file('images_7')->getClientOriginalExtension();
+                Input::file('images_7')->move($destinationPath, $filename);
+                $product->image_7 = $filename;
+            }
+
+            if(Input::hasFile('images_8')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_8.'.Input::file('images_8')->getClientOriginalExtension();
+                Input::file('images_8')->move($destinationPath, $filename);
+                $product->image_8 = $filename;
+            }
+
+            if(Input::hasFile('images_9')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_9.'.Input::file('images_9')->getClientOriginalExtension();
+                Input::file('images_9')->move($destinationPath, $filename);
+                $product->image_9 = $filename;
+            }
+
+            if(Input::hasFile('images_10')){
+                $destinationPath = public_path() . '/img/products/';
+                $filename = $imgUrl.'_10.'.Input::file('images_10')->getClientOriginalExtension();
+                Input::file('images_10')->move($destinationPath, $filename);
+                $product->image_10 = $filename;
+            }
 
 
             $product->save();
 
-            return Redirect::to('admin/products')
-                ->with('success','Product Created');
+            return Redirect::to('admin/products/amend/'.$id)
+                ->with('success', 'Product Created');
         }
 
-        return Redirect::to('admin/products/index')
+        return Redirect::to('admin/products/amend/'.$id)
             ->with('error', 'Something went wrong')
             ->withErrors($validator)
             ->withInput();
