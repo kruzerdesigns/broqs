@@ -18,7 +18,7 @@
 </head>
 <body>
     <main>
-        <header>
+        <header class="main-nav">
 
             <section class="grey top-nav">
 
@@ -76,16 +76,15 @@
                             {{ Form::close() }}
                         </li>
 
-                        <li><a href="<?=url()?>store/cart">Basket</a></li>
+                        <li><a href="<?=url()?>/store/cart">Basket ({{ $basket }})</a></li>
                     </ul>
 
                     <!-- Left of nav -->
                     <ul class="left">
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
+
+                        @foreach($navigation as $nav)
+                            <li>{{ HTML::link(url().'/'.$nav->url,$nav->name) }}</li>
+                        @endforeach
                     </ul>
                     </section>
                 </nav>
@@ -95,16 +94,25 @@
         @yield('promo')
         @yield('search-keyword')
 
-        @if (Session::has('message'))
-            <p class="alert-box">{{ Session::get('message') }}</p>
-        @endif
+        <section class="row">
+            @if (Session::has('success'))
+                   <p class="alert-box success">{{ Session::get('success') }}</p>
+            @endif
+        </section>
+
+        <section class="row">
+            @if (Session::has('message'))
+                   <p class="alert-box warning ">{{ Session::get('message') }}</p>
+            @endif
+        </section>
+
 
         @yield('content');
 
         <!--Footer -->
         <footer>
 
-            <section class="row hidden-for-medium-down">
+            <section class="row hidden-for-medium-down footer">
 
                 <div class="large-4 columns">
                     <h4>Links</h4>
@@ -136,11 +144,7 @@
 
 
 
-            <section class="row">
 
-
-
-            </section>
 
         </footer>
 

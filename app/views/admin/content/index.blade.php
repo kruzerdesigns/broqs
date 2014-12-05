@@ -16,7 +16,7 @@
                 {{ $con->name }}
             </div>
             <div class="large-2 columns">
-                 {{ HTML::link('admin/products/amend/'.$con->url,'Edit',array('class'=>'button tiny success')) }}
+                 {{ HTML::link('admin/content/amend/'.$con->url,'Edit',array('class'=>'button tiny success')) }}
             </div>
 
             <div class="large-2 columns end">

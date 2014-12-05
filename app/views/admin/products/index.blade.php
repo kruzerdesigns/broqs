@@ -97,7 +97,7 @@
                                 </div>
                                  <div id="image_5">
                                 {{ Form::label('images_5', 'Choose an Image',array('class'=>'strong')) }}
-                                {{ Form::file('image_5', array('multiple'=>true)) }}
+                                {{ Form::file('images_5', array('multiple'=>true)) }}
                                 </div>
                                  <div id="image_6">
                                 {{ Form::label('images_6', 'Choose an Image',array('class'=>'strong')) }}

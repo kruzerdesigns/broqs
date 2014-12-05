@@ -10,8 +10,12 @@
             @foreach($content as $con)
             {{ Form::open(array('url' => 'admin/amendnavigation')) }}
             <div class="row ">
-                <div class="large-6 columns">
+                <div class="large-4 columns">
                     {{ Form::text('name',$con->name) }}
+                    {{ Form::hidden('id',$con->id) }}
+                </div>
+                <div class="large-4 columns">
+                    {{ Form::text('url',$con->url) }}
                     {{ Form::hidden('id',$con->id) }}
                 </div>
                 <div class="large-1 columns">
@@ -47,9 +51,15 @@
 
     {{ Form::open(array('url' => 'admin/createnavigation')) }}
 
-        {{ Form::label('name') }}
-        <div class="large-5">
+
+        <div class="large-4 columns">
+         {{ Form::label('name') }}
             {{ Form::text('name') }}
+        </div>
+
+        <div class="large-4 columns end">
+        {{ Form::label('url') }}
+            {{ Form::text('url') }}
         </div>
 
 

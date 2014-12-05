@@ -2,11 +2,15 @@
 .grey{background: #eee;}
 a {color: #B92424}
 a:hover {color: #4E0E0E;}
+.padding{padding: 10px 0;}
+.padding-top{padding-top: 20px;}
+.padding-bottom{padding-bottom: 20px;}
 
 .button {background: #B92424 ; border-color: #B92424 ;}
 .button:hover {background: #761010 ; border-color: #761010 ;}
 
 /* Header */
+header.main-nav{margin-bottom: 20px;}
 .top-header{height:200px; background: #2e373f;}
 .top-nav{height:25px;}
 .top-nav ul li a { font-size: 14px !important;}
@@ -16,9 +20,20 @@ a:hover {color: #4E0E0E;}
 /* index */
 .products-index img.feature{ width:50%;}
 
+/* products */
+.product-view img {width:74%;}
+.product-related img.feature  {width:74%;}
+
+
+/* cart */
+.product-cart{width:10%;}
+.payment-price{text-align: center; background: #f5f5f5; font-weight: bold; padding:20px; margin-bottom: 15px;}
+.payment-checkout .button.small{ margin-bottom: 0 !important;}
+.payment{background: #ededed; padding: 18px;}
 
 /* Footer*/
 footer{background: #eee;}
+
 
 
 
@@ -34,6 +49,7 @@ footer{background: #eee;}
 .strong{font-size: 16px; font-weight: bold;}
 .soft-blue{color: #005299;  }
 .soft-blue-bg{background: #005299; !important;  }
+.soft-blue-bg:hover{background: #07365F; !important;  }
 .soft-green{color: #43ac6a;  }
 .soft-green-bg{background: #43ac6a; !important;  }
 .soft-red{color: #CD3F3F;  }

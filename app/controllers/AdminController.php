@@ -437,7 +437,7 @@ class AdminController extends BaseController{
             $validator->save();
 
 
-            return Redirect::to('admin/contentamend/'.$url)
+            return Redirect::to('admin/content/amend/'.$url)
                 ->with('success','Page successfully updated');
         }
 
@@ -469,7 +469,7 @@ class AdminController extends BaseController{
 
     public function getNavigation(){
         return View::make('admin/content.navigation')
-            ->with('content',Content::all());
+            ->with('content',Content::where('nav','=',1)->get());
     }
 
     public function postCreatenavigation(){
@@ -478,7 +478,8 @@ class AdminController extends BaseController{
 
         if($validator->passes()){
             $content        = new Content();
-            $content->name  = Input::get('name');
+            $content->name  = ucfirst(Input::get('name'));
+            $content->url  = Input::get('url');
             $content->nav   = 1;
             $content->save();
 
@@ -501,6 +502,7 @@ class AdminController extends BaseController{
         if($navigation){
 
             $navigation->name  = Input::get('name');
+            $navigation->url  = Input::get('url');
             $navigation->save();
 
 

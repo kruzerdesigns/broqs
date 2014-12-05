@@ -11,7 +11,7 @@
     </div>
 
 
-        {{ Form::open(array('url'=>'admin/productstamend')) }}
+        {{ Form::open(array('url'=>'admin/productstamend','files'=>true)) }}
 
             {{ Form::label('title','Product Name',array('class'=>'strong')) }}
             <div class="row">

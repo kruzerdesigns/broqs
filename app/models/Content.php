@@ -8,7 +8,7 @@ class Content extends Eloquent{
 
     public static $rules = array(
         'con_id'            => 'integer',
-        'nav'               => 'min:2',
+        'nav'               => 'integer',
         'name'              => 'required|min:3'
 
 

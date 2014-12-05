@@ -20,7 +20,8 @@
                 </div>
             </div>
 
-            {{ Form::label('meta_title','Meta Title - Used for SEO purposes. the title of the the page',array('class'=>'strong')) }}
+            {{ Form::label('meta_title','Meta Title - Used for SEO
+            purposes. the title of the the page',array('class'=>'strong')) }}
             <div class="row">
                 <div class="large-4 column">
                     {{ Form::text('meta_title',$content->meta_title) }}
@@ -36,7 +37,7 @@
 
 
             {{ Form::label('page_content','Page Content',array('class'=>'strong','id'=>'wysiwyg')) }}
-            {{ Form::textarea('page_content',$content->page_content) }}
+            {{ Form::textarea('page_content',$content->page_content,array('id'=>'wysiwyg')) }}
             {{ Form::hidden('id',$content->id) }}
 
             <br>
