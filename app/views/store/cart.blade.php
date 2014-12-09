@@ -3,9 +3,9 @@
 @section('content')
 
     @if($products)
-
+    <!-- With paypal -->
     <section class="row">
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="POST">
+         <!--<form action="https://www.paypal.com/cgi-bin/webscr" method="POST">-->
 
             <div class="small-12 medium-7 columns">
 
@@ -29,7 +29,7 @@
                                     {{ HTML::image('img/remove.gif','Remove Product') }}
                                 </a>
                             </td>
-                            <td>&pound;{{ $product->price }}</td>
+                            <td>&pound; {{ $product->price }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>
                                 &pound;{{ $product->total_price }}
@@ -50,8 +50,9 @@
                     </div>
                     <div class="payment-checkout">
                         {{ HTML::link(url(),'Continue Shopping',array('class'=>'button small soft-blue-bg')) }}
+                        {{ HTML::link('store/checkout','Checkout',array('class'=>'button small info')) }}
 
-                         <input type="hidden" name="cmd" value="_xclick">
+                        <!-- <input type="hidden" name="cmd" value="_xclick">
                         <input type="hidden" name="currency_code" value="GBP">
                         <input type="hidden" name="business" value="yousuf@kruzerdesigns.com">
                         <input type="hidden" name="item_name" value="Store Purchase">
@@ -60,7 +61,7 @@
                         <input type="hidden" name="last_name" value="{{ Auth::user()->lastname }}">
                         <input type="hidden" name="email" value="{{ Auth::user()->email }}">
 
-                       <input type="submit" value="Checkout with paypal" class="button small info">
+                       <input type="submit" value="Checkout with paypal" class="button small info"> -->
                     </div>
                 </div>
             </div>

@@ -15,6 +15,8 @@
    {{ HTML::style('css/style.css') }}
    {{ HTML::script('js/vendor/modernizr-2.6.2.min.js') }}
 
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 </head>
 <body>
     <main>
@@ -107,7 +109,7 @@
         </section>
 
 
-        @yield('content');
+        @yield('content')
 
         <!--Footer -->
         <footer>
@@ -150,7 +152,7 @@
 
     </main>
 
-    {<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     {{ HTML::script('js/plugins.js') }}
     {{ HTML::script('js/foundation.min.js') }}
     {{ HTML::script('js/foundation.reveal.js') }}

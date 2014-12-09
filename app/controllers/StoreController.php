@@ -6,6 +6,8 @@ class StoreController extends BaseController{
         parent::__construct();
         $this->beforeFilter('csrf',array('on' =>'post'));
         $this->beforeFilter('auth',array('only'=>array('postAddtoCart','getCart','getRemoveitem')));
+        $this->user = Auth::user();
+
     }
 
     public function getIndex(){
@@ -49,7 +51,8 @@ class StoreController extends BaseController{
 
         /* Check if theres anything in the basket */
         $checkBasket = Basket::where('user_id','=',Auth::id())
-                        ->where('product_id','=',$product->id)->first();
+                        ->where('product_id','=',$product->id)
+                        ->where('paid','=',0)->first();
         if($checkBasket)
         {
             $checkBasket->quantity = $checkBasket->quantity + $quantity;
@@ -82,10 +85,12 @@ class StoreController extends BaseController{
                     ->join('products','basket.product_id','=','products.id')
                     ->select('basket.id as bas_id', 'user_id', 'product_id', 'quantity', 'paid', 'products.id', 'category_id',
                         'title', 'url', 'price', 'image_1','total_price')
-                    ->where('user_id','=',Auth::id())->get();
+                    ->where('user_id','=',Auth::id())
+                    ->where('paid','=',0)->get();
 
         $total = DB::table('basket')
             ->where('user_id','=',Auth::id())
+            ->where('paid','=',0)
             ->sum('total_price');
 
         return View::make('store.cart')
@@ -152,4 +157,120 @@ class StoreController extends BaseController{
             ->with('content',$content)
             ->with('404','Page not Found');
     }
+
+    public function getCheckout(){
+        $email = $this->user->email;
+        $basket = DB::table('basket')
+            ->join('products','basket.product_id','=','products.id')
+            ->select('basket.id as bas_id', 'user_id', 'product_id', 'quantity', 'paid', 'products.id', 'category_id',
+                'title', 'url', 'price', 'image_1','total_price')
+            ->where('user_id','=',Auth::id())
+            ->where('paid','=',0)->get();
+
+        $total = DB::table('basket')
+            ->where('user_id','=',Auth::id())
+            ->where('paid','=',0)
+            ->sum('total_price');
+
+        return View::make('store.checkout')
+            ->with('email',$email)
+            ->with('products',$basket)
+            ->with('total',$total);
+    }
+
+    public function postCheckout()
+    {
+
+
+
+        $token = Input::get('token');
+        $price = Input::get('amount');
+
+        $amount = str_replace('.', '', $price);
+
+        try{
+
+            $charge = Stripe_Charge::create(array(
+                "amount" => $amount,
+                "currency" => "GBP",
+                "card" => $token,
+                "description" => "order from ".Input::get('delivery_name'). " ;".$this->user->email
+
+            ));
+
+            /* get basket */
+            $basket = DB::table('basket')
+                ->join('products','basket.product_id','=','products.id')
+                ->select('basket.id as bas_id', 'user_id', 'product_id', 'quantity', 'paid', 'products.id', 'category_id',
+                    'title', 'url', 'price', 'image_1','total_price')
+                ->where('user_id','=',Auth::id())
+                ->where('paid','=',0)->get();
+
+            $total = DB::table('basket')
+                ->where('user_id','=',Auth::id())
+                ->sum('total_price');
+
+
+
+
+            /* Update basket to paid */
+            foreach($basket as $b)
+            {
+                echo $b->bas_id .'<br>';
+
+                $update = Basket::find($b->bas_id);
+
+                $update->paid = 1;
+
+                $update->save();
+
+                /* add basket into orders */
+                $orders = new Orders;
+
+                $orders->basket_id = $b->bas_id;
+                $orders->stripe_token = $charge['id'];
+                $orders->processed = 0;
+
+                $orders->save();
+
+            }
+
+            $user = User::find($this->user->id);
+
+            $user->delivery_name = Input::get('delivery_name');
+            $user->address = Input::get('street');
+            $user->address_2 = Input::get('street2');
+            $user->town = Input::get('town');
+            $user->county = Input::get('county');
+            $user->postcode = Input::get('postcode');
+
+            $user->save();
+
+
+
+        }catch (Stripe_CardError $e){
+            $e_json = $e->getJsonBody();
+            $error = $e_json['error'];
+
+            return Redirect::to('store/checkout')->with('error',$error);
+
+        }
+
+
+        return Redirect::to('store/complete');
+
+
+
+
+
+    }
+
+    public function  getComplete(){
+
+        return View::make('store.complete');
+
+    }
+
+
+
 }
