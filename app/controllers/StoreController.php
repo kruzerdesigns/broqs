@@ -221,6 +221,7 @@ class StoreController extends BaseController{
                 $update = Basket::find($b->bas_id);
 
                 $update->paid = 1;
+                $update->stripe_token = $charge['id'];
 
                 $update->save();
 

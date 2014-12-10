@@ -65,12 +65,11 @@
             <div class="admin-nav">
 
                 <ul class="side-nav">
-                  <li><a href="<?=url()?>/admin"><i class="fa fa-tachometer"></i> &nbsp;&nbsp;Dashboard</a></li>
                   <li><a href="<?=url()?>/admin/navigation"><i class="fa fa-code"></i> &nbsp;&nbsp;Navigation</a></li>
                   <li><a href="<?=url()?>/admin/content"><i class="fa fa-comments-o"></i> &nbsp;&nbsp;Content</a></li>
                   <li><a href="<?=url()?>/admin/products"><i class="fa fa-file-text-o"></i>  &nbsp;&nbsp;Products</a></li>
                   <li><a href="<?=url()?>/admin/categories"><i class="fa fa-file-archive-o"></i>  &nbsp;&nbsp;Categories</a></li>
-                  <li><a href="#"><i class="fa fa-credit-card"></i>  &nbsp;&nbsp;Orders</a></li>
+                  <li><a href="<?=url()?>/admin/orders"><i class="fa fa-credit-card"></i>  &nbsp;&nbsp;Orders</a></li>
                 </ul>
             </div>
           </nav>

@@ -9,8 +9,9 @@ class AdminController extends BaseController{
     }
 
     public function getIndex(){
-        return View::make('admin/index')
-            ->with('categories',Category::all());
+        /*return View::make('admin/index')
+            ->with('categories',Category::all());*/
+        return Redirect::to('admin/orders');
     }
 
     /****************
@@ -529,5 +530,125 @@ class AdminController extends BaseController{
 
         return Redirect::to('admin/navigation')
             ->with('error', 'Something went wrong');
+    }
+
+    /********************
+     ** Orders *****
+     *******************/
+
+
+    public function getOrders()
+    {
+        $order = DB::table('orders')
+            ->select('stripe_token')
+            ->where('processed',0)
+            ->groupBy('stripe_token')
+            ->get();
+
+        foreach($order as $o) {
+            $basket = DB::table('basket')
+                ->join('products','basket.product_id','=','products.id')
+                ->join('users','basket.user_id','=','users.id')
+                ->select(DB::raw('sum(total_price) as overall_price, firstname, lastname, email, basket.id as basID, basket.updated_at as updated_last'))
+                ->where('paid', '=', 1)
+                ->where('stripe_token', '=', $o->stripe_token)
+                ->groupBy('stripe_token')
+
+                ->get();
+        }
+
+        $total = DB::table('basket')
+            ->where('user_id','=',Auth::id())
+            ->sum('total_price');
+
+        return View::make('admin/orders.index')
+                ->with('basket',$basket)
+                ->with('orders',$order);
+    }
+
+    public function getOrdersview($id)
+    {
+        $getID = Basket::find($id);
+
+        $order =   DB::table('basket')
+            ->join('products','basket.product_id','=','products.id')
+            ->select(DB::raw('basket.id as bas_id, user_id, product_id, quantity, products.id, title, price, image_1,
+                    total_price'))
+            ->where('paid','=',1)
+            ->where('stripe_token','=',$getID->stripe_token)
+            ->get();
+
+        $user = User::find($getID->user_id);
+
+        $total = DB::table('basket')
+            ->where('stripe_token','=',$getID->stripe_token)
+            ->select(DB::raw('sum(total_price) as total, updated_at, stripe_token, user_id'))
+            ->first();
+
+
+
+        return View::make('admin/orders.view')
+                ->with('user',$user)
+                ->with('total',$total)
+                ->with('orders',$order);
+    }
+
+    public function postOrderprocess()
+    {
+        $token = Input::get('token');
+        $userID = Input::get('user');
+        $user = User::find($userID);
+        $orders = Orders::where('stripe_token','=',$token)->get();
+
+        $total = DB::table('basket')
+            ->where('stripe_token','=',$token)
+            ->select(DB::raw('sum(total_price) as total, updated_at, stripe_token'))
+            ->first();
+
+        // Update orders to processed
+        foreach($orders as $or)
+        {
+            $order = Orders::find($or->id);
+
+            $order->processed = 1;
+
+            $order->save();
+        }
+
+        $emailBasket = DB::table('basket')
+            ->join('products','basket.product_id','=','products.id')
+            ->select(DB::raw('basket.id as bas_id, user_id, product_id, quantity, products.id, title, price, image_1,
+                    total_price'))
+            ->where('paid','=',1)
+            ->where('stripe_token','=',$token)
+            ->get();
+
+        $data = array(
+            'products' => $emailBasket,
+            'firstname' => $user->firstname,
+            'total_price' => $total->total
+
+        );
+
+            Mail::send('emails/order.processed', $data, function($message) use($user)
+            {
+                $message->to($user->email, $user->firstname)->subject('Order has been dispatched');
+            });
+
+
+        //delete basket after processed order
+        $basket = Basket::where('stripe_token','=',$token)->get();
+        foreach($basket as $bas)
+        {
+            $delete = Basket::find($bas->id);
+
+            $delete->delete();
+        }
+
+
+        return Redirect::to('admin/orders')
+                ->with('success','Product marked as processed and dispatched');
+
+
     }
 }
