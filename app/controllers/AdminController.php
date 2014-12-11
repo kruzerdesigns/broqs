@@ -250,6 +250,7 @@ class AdminController extends BaseController{
             $product->medium = Input::get('medium');
             $product->large = Input::get('large');
 
+
             $imgUrl = url().'/img/products/'.$url;
 
             if(Input::hasFile('images_1')){
@@ -324,7 +325,7 @@ class AdminController extends BaseController{
 
             $product->save();
 
-            return Redirect::to('admin/products/amend/'.$id)
+           return Redirect::to('admin/products/amend/'.$id)
                 ->with('success', 'Product Created');
         }
 
@@ -417,7 +418,7 @@ class AdminController extends BaseController{
     public function postAmendcontent(){
 
         $validator = Content::find(Input::get('id'));
-
+        $url              = Input::get('name');
         if($validator){
 
             $url              = Input::get('name');
@@ -435,14 +436,24 @@ class AdminController extends BaseController{
             $validator->page_content      = Input::get('page_content');
             $validator->url               = $url;
 
+            if(Input::get('published'))
+            {
+                $validator->published         = 1;
+            }else{
+                $validator->published         = 0;
+            }
+
+
+
             $validator->save();
 
+           # dd($validator);
 
             return Redirect::to('admin/content/amend/'.$url)
                 ->with('success','Page successfully updated');
         }
 
-        return Redirect::to('admin/content')
+       return Redirect::to('admin/content/amend/'.$url)
             ->with('error', 'Something went wrong')
             ->withErrors($validator);
 
@@ -573,7 +584,7 @@ class AdminController extends BaseController{
         $order =   DB::table('basket')
             ->join('products','basket.product_id','=','products.id')
             ->select(DB::raw('basket.id as bas_id, user_id, product_id, quantity, products.id, title, price, image_1,
-                    total_price'))
+                    total_price, basket.size as bsize'))
             ->where('paid','=',1)
             ->where('stripe_token','=',$getID->stripe_token)
             ->get();

@@ -78,7 +78,7 @@ class StoreController extends BaseController{
         }
 
 
-        return Redirect::to('store/cart');
+        return Redirect::to('/');
 
     }
 
@@ -151,7 +151,7 @@ class StoreController extends BaseController{
     }
 
     public function getPages($url){
-        $content = Content::where('url','=',$url)->where('nav','=','0')->first();
+        $content = Content::where('url','=',$url)->where('nav','=','0')->where('published','=','1')->first();
 
 
        return View::make('store.content')

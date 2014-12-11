@@ -6,7 +6,7 @@
     <!-- With paypal -->
     <section class="row">
          <!--<form action="https://www.paypal.com/cgi-bin/webscr" method="POST">-->
-
+            <div class="large-8 column">
 
                 <table role="grid">
                     <thead>
@@ -42,10 +42,14 @@
 
                     </tbody>
                 </table>
-
+            </div>
             </section>
+
+
+
             <section class="row">
-                <div class="medium-5 column">
+                <div class="large-8">
+                    <div class="large-7 large-centered columns ">
                 <div class="payment">
                     <div class="payment-price">
                           Total &pound;{{ $total }}
@@ -69,6 +73,7 @@
 
         </form>
             </div>
+                </div>
             </section>
 
     @else

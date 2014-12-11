@@ -73,8 +73,14 @@
             <div class="row">
                 @if($products->image_1)
                     <div class="large-2 columns">
-                        <div class="grey">
+                        <div class="grey product-image">
                              {{ HTML::image($products->image_1, $products->title) }}
+                             <div class="remove-icon">
+                                <a href="{{ url().'/admin/remove-img/'.$products->url.'_1' }}">
+                                   <i class="fa fa-times"></i>
+                                 </a>
+                             </div>
+
                         </div>
                         {{ Form::label('image', 'Change Image',array('class'=>'strong')) }}
                         {{ Form::file('images_1') }}
@@ -86,8 +92,13 @@
 
                  @if($products->image_2)
                     <div class="large-2 columns">
-                        <div class="grey">
+                        <div class="grey product-image">
                              {{ HTML::image($products->image_2, $products->title) }}
+                             <div class="remove-icon">
+                                <a href="{{ url().'/admin/remove-img/'.$products->url.'_2' }}">
+                                   <i class="fa fa-times"></i>
+                                 </a>
+                             </div>
                         </div>
                         {{ Form::label('image', 'Change Image',array('class'=>'strong')) }}
                         {{ Form::file('images_2') }}
@@ -99,8 +110,13 @@
 
                  @if($products->image_3)
                     <div class="large-2 columns">
-                        <div class="grey">
+                        <div class="grey product-image">
                              {{ HTML::image($products->image_3, $products->title) }}
+                             <div class="remove-icon">
+                                <a href="{{ url().'/admin/remove-img/'.$products->url.'_3' }}">
+                                   <i class="fa fa-times"></i>
+                                 </a>
+                             </div>
                         </div>
                         {{ Form::label('image', 'Change Image',array('class'=>'strong')) }}
                         {{ Form::file('images_3') }}
@@ -114,8 +130,13 @@
 
                  @if($products->image_4)
                     <div class="large-2 columns">
-                        <div class="grey">
+                        <div class="grey product-image">
                              {{ HTML::image($products->image_4, $products->title) }}
+                             <div class="remove-icon">
+                                <a href="{{ url().'/admin/remove-img/'.$products->url.'_4' }}">
+                                   <i class="fa fa-times"></i>
+                                 </a>
+                             </div>
                         </div>
                         {{ Form::label('image', 'Change Image',array('class'=>'strong')) }}
                         {{ Form::file('images_4') }}
@@ -129,8 +150,13 @@
 
                  @if($products->image_5)
                     <div class="large-2 columns">
-                        <div class="grey">
+                        <div class="grey product-image">
                              {{ HTML::image($products->image_5, $products->title) }}
+                            <div class="remove-icon">
+                                <a href="{{ url().'/admin/remove-img/'.$products->url.'_1' }}">
+                                   <i class="fa fa-times"></i>
+                                 </a>
+                             </div>
                         </div>
                         {{ Form::label('image', 'Change Image',array('class'=>'strong')) }}
                         {{ Form::file('images_5') }}
@@ -144,8 +170,13 @@
 
                  @if($products->image_6)
                     <div class="large-2 columns">
-                        <div class="grey">
+                        <div class="grey product-image">
                              {{ HTML::image($products->image_6, $products->title) }}
+                            <div class="remove-icon">
+                                <a href="{{ url().'/admin/remove-img/'.$products->url.'_6' }}">
+                                   <i class="fa fa-times"></i>
+                                 </a>
+                             </div>
                         </div>
                         {{ Form::label('image', 'Change Image',array('class'=>'strong')) }}
                         {{ Form::file('images_6') }}
@@ -159,8 +190,13 @@
 
                 @if($products->image_7)
                     <div class="large-2 columns">
-                        <div class="grey">
+                        <div class="grey product-image">
                             {{ HTML::image($products->image_7, $products->title) }}
+                            <div class="remove-icon">
+                                <a href="{{ url().'/admin/remove-img/'.$products->url.'_7' }}">
+                                   <i class="fa fa-times"></i>
+                                 </a>
+                             </div>
                         </div>
                         {{ Form::label('image', 'Change Image',array('class'=>'strong')) }}
                         {{ Form::file('images_7') }}
@@ -174,8 +210,13 @@
 
                 @if($products->image_8)
                     <div class="large-2 columns">
-                        <div class="grey">
+                        <div class="grey product-image">
                             {{ HTML::image($products->image_8, $products->title) }}
+                            <div class="remove-icon">
+                                <a href="{{ url().'/admin/remove-img/'.$products->url.'_8' }}">
+                                   <i class="fa fa-times"></i>
+                                 </a>
+                             </div>
                         </div>
                         {{ Form::label('image', 'Change Image',array('class'=>'strong')) }}
                         {{ Form::file('images_8') }}
@@ -189,8 +230,13 @@
 
                 @if($products->image_9)
                     <div class="large-2 columns">
-                        <div class="grey">
+                        <div class="grey product-image">
                             {{ HTML::image($products->image_9, $products->title) }}
+                            <div class="remove-icon">
+                                <a href="{{ url().'/admin/remove-img/'.$products->url.'_9' }}">
+                                   <i class="fa fa-times"></i>
+                                 </a>
+                             </div>
                         </div>
                         {{ Form::label('image', 'Change Image',array('class'=>'strong')) }}
                         {{ Form::file('images_9') }}
@@ -204,8 +250,13 @@
 
                 @if($products->image_10)
                     <div class="large-2 columns">
-                        <div class="grey">
+                        <div class="grey product-image">
                             {{ HTML::image($products->image_10, $products->title) }}
+                            <div class="remove-icon">
+                                <a href="{{ url().'/admin/remove-img/'.$products->url.'_10' }}">
+                                   <i class="fa fa-times"></i>
+                                 </a>
+                             </div>
                         </div>
                         {{ Form::label('image', 'Change Image',array('class'=>'strong')) }}
                         {{ Form::file('images_10') }}

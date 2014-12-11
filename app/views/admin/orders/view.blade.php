@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="row">
-                                    <b>Size:</b> {{ $order->size }}
+                                    <b>Size:</b> {{ $order->bsize }}
                             </div>
 
                             <div class="row">

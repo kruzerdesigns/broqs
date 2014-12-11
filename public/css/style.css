@@ -7,6 +7,7 @@ a:hover {color: #4E0E0E;}
 .padding-top{padding-top: 20px;}
 .padding-bottom{padding-bottom: 20px;}
 body{padding-bottom: 0 !important;}
+.blank-div{width: 100%;}
 
 
 .main-wrapper{ min-height:100%;    position:relative;}
@@ -59,6 +60,7 @@ li.visible a:focus {    color: transparent;}
 .payment-price{text-align: center; background: #f5f5f5; font-weight: bold; padding:20px; margin-bottom: 15px;}
 .payment-checkout .button.small{ margin-bottom: 0 !important;}
 .payment{background: #ededed; padding: 18px;}
+.checkout-button{ font-size: 18px !important;}
 
 /* checkout */
 #checkout label{font-size: 11px;}
@@ -95,3 +97,5 @@ footer{background: #eee; margin-top:20px; bottom:0;  }
 .soft-red{color: #CD3F3F;  }
 .soft-red-bg{background: #CD3F3F; !important; }
 .image-upload{height:200px;}
+.product-image{position: relative;}
+.remove-icon{position: absolute; top: 0;right: 5px;}

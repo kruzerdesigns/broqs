@@ -3,7 +3,7 @@
 @section('content')
 
 <span class="payment-errors"></span>
-{{ Form::open(array('url'=>'store/checkout', 'id' =>'checkout')) }}
+{{ Form::open(array('url'=>'store/checkout', 'id' =>'checkout', 'data-abide' => true)) }}
 
 <div class="row">
 <div class="large-8 large-centered column">
@@ -60,13 +60,21 @@
         <div class="large-6 columns end">
 
             <div class="row">
-                <label>Full Name</label>
-                {{ Form::text('delivery_name','') }}
+                <div class="name-field">
+                    <label>Full Name
+                        {{ Form::text('delivery_name','', ['required']) }}
+                        <small class="error">Name is required </small>
+                    </label>
+                </div>
             </div>
 
             <div class="row">
-                <label>Street</label>
-                {{ Form::text('street','') }}
+                <div class="name-field">
+                    <label>Street
+                        {{ Form::text('street','', ['required']) }}
+                        <small class="error">Street name is required </small>
+                    </label>
+                </div>
             </div>
 
             <div class="row">
@@ -74,18 +82,30 @@
             </div>
 
             <div class="row">
-                <label>Town/City</label>
-                {{ Form::text('town','') }}
+                <div class="name-field">
+                    <label>Town/City
+                        {{ Form::text('town','', ['required']) }}
+                        <small class="error">Town or City is required </small>
+                    </label>
+                </div>
             </div>
 
             <div class="row">
-                <label>County</label>
-                {{ Form::text('county','') }}
+                <div class="name-field">
+                    <label>County
+                        {{ Form::text('county','', ['required']) }}
+                        <small class="error">Town or City is required </small>
+                    </label>
+                </div>
             </div>
 
             <div class="row">
-                <label>Post Code</label>
-                {{ Form::text('postcode','') }}
+                <div class="name-field">
+                    <label>Post Code
+                        {{ Form::text('postcode','', ['required']) }}
+                        <small class="error">Town or City is required </small>
+                    </label>
+                </div>
             </div>
 
 
@@ -143,7 +163,7 @@
             </div>
             {{ Form::hidden('amount',$total) }}
             <!-- {{ Form::submit('Pay',array('class'=>'button tiny info')) }} -->
-            <button class="button tiny info">Submit my Order</button>
+            <button class="button small soft-red-bg checkout-button right">Submit my Order</button>
         </div>
 
     </section>
