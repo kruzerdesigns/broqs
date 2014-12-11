@@ -51,33 +51,25 @@
                     {{ Form::checkbox('small','1',$checkeds) }}
                     {{ Form::label('small','S',array('class'=>'strong')) }}
                     {{ Form::checkbox('medium','1',$checkedm) }}
-                    {{ Form::label('medium','L',array('class'=>'strong')) }}
+                    {{ Form::label('medium','M',array('class'=>'strong')) }}
                     {{ Form::checkbox('large','1',$checkedl) }}
-                    {{ Form::label('large','M',array('class'=>'strong')) }}
+                    {{ Form::label('large','L',array('class'=>'strong')) }}
 
 
                 </div>
 
-            </div>
-
-            {{ Form::label('meta_title','Meta Title - Used for SEO purposes. the title of the the page',array('class'=>'strong')) }}
-            <div class="row">
-                <div class="large-4 column">
-                    {{ Form::text('meta_title',$products->meta_title) }}
-                </div>
-            </div>
-
-            {{ Form::label('meta_description','Meta Description - Used for SEO purposes - Description of the the page',array('class'=>'strong')) }}
-            <div class="row">
-                <div class="large-10 column">
-                    {{ Form::text('meta_description',$products->meta_description) }}
-                </div>
             </div>
 
 
             {{ Form::label('description','Product Description',array('class'=>'strong','id'=>'wysiwyg')) }}
-            {{ Form::textarea('description',$products->description,array('id','wysiwyg')) }}
-
+            {{ Form::textarea('description',$products->description,array('id'=>'wysiwyg')) }}
+            <br><br>
+            {{ Form::label('description_2','Product Description 2',array('class'=>'strong','id'=>'wysiwyg')) }}
+            {{ Form::textarea('description_2',$products->description_2, array('id'=>'wysiwyg')) }}
+            <br><br>
+            {{ Form::label('description_3','Product Description 3',array('class'=>'strong','id'=>'wysiwyg')) }}
+            {{ Form::textarea('description_3',$products->description_3, array('id'=>'wysiwyg')) }}
+            <br><br>
             <div class="row">
                 @if($products->image_1)
                     <div class="large-2 columns">

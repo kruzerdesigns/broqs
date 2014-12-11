@@ -243,8 +243,8 @@ class AdminController extends BaseController{
             #$product->meta_description = Input::get('meta_description');
             $product->url = $url;
             $product->description = Input::get('description');
-            #$product->description_2 = Input::get('description_2');
-            #$product->description_3 = Input::get('description_3');
+            $product->description_2 = Input::get('description_2');
+            $product->description_3 = Input::get('description_3');
             $product->price = Input::get('price');
             $product->small = Input::get('small');
             $product->medium = Input::get('medium');

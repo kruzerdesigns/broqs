@@ -16,8 +16,8 @@ class UsersController extends BaseController{
 
         if($validator->passes()){
             $user = new User;
-            $user->firstname = Input::get('firstname');
-            $user->lastname = Input::get('lastname');
+            $user->firstname = ucfirst(Input::get('firstname'));
+            $user->lastname = ucfirst(Input::get('lastname'));
             $user->email = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
             $user->telephone = Input::get('telephone');

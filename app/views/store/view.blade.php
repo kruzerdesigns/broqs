@@ -7,12 +7,48 @@
 
         <!-- Product Image -->
         <div class="small-12 medium-6 large-4 columns padding-bottom">
-            {{ HTML::image($product->image_1,$product->title) }}
+        <ul class="clearing-thumbs clearing-feature" data-clearing>
+            <li class="clearing-featured-img"><a href="{{ $product->image_1 }}">{{ HTML::image($product->image_1,$product->title) }}</a></li>
+             @if($product->image_2)
+                <li><a href="{{ $product->image_2 }}">{{ HTML::image($product->image_2,$product->title) }}</a></li>
+             @endif
+             @if($product->image_3)
+                <li><a href="{{ $product->image_3 }}">{{ HTML::image($product->image_3,$product->title) }}</a></li>
+             @endif
+             @if($product->image_4)
+                <li><a href="{{ $product->image_4 }}">{{ HTML::image($product->image_4,$product->title) }}</a></li>
+             @endif
+             @if($product->image_5)
+                <li><a href="{{ $product->image_5 }}">{{ HTML::image($product->image_5,$product->title) }}</a></li>
+             @endif
+             @if($product->image_6)
+                <li><a href="{{ $product->image_6 }}">{{ HTML::image($product->image_6,$product->title) }}</a></li>
+             @endif
+             @if($product->image_7)
+                <li><a href="{{ $product->image_7 }}">{{ HTML::image($product->image_7,$product->title) }}</a></li>
+             @endif
+             @if($product->image_8)
+                <li><a href="{{ $product->image_8 }}">{{ HTML::image($product->image_8,$product->title) }}</a></li>
+             @endif
+             @if($product->image_9)
+                <li><a href="{{ $product->image_9 }}">{{ HTML::image($product->image_9,$product->title) }}</a></li>
+             @endif
+             @if($product->image_10)
+                <li><a href="{{ $product->image_10 }}">{{ HTML::image($product->image_10,$product->title) }}</a></li>
+             @endif
+        </ul>
+
         </div>
         <div class="small-12 medium-6 large-2 columns product-view">
+            @if($product->image_2)
             {{ HTML::image($product->image_2,$product->title) }}
+            @endif
+            @if($product->image_3)
             {{ HTML::image($product->image_3,$product->title) }}
+            @endif
+            @if($product->image_4)
             {{ HTML::image($product->image_4,$product->title) }}
+            @endif
         </div>
 
         <!-- Cart button and quantity -->
@@ -41,7 +77,18 @@
                     </div>
                       <div class="large-6 columns end">
 
-                       {{ Form::select('size', array('small'=>'Small','medium'=>'Medium','large'=>'Large'),'Small') }}
+                      <select name="size">
+                          @if($product->small)
+                              <option value="small">Small</option>
+                          @endif
+                          @if($product->medium)
+                              <option value="medium">Medium</option>
+                          @endif
+                          @if($product->large)
+                              <option value="large">Large</option>
+                          @endif
+
+                      </select>
                        {{ Form::hidden('id', $product->id) }}
                       </div>
                   </div>
@@ -57,9 +104,8 @@
 
                  <dl class="tabs" data-tab>
                      <dd class="active"><a href="#panel1">Description</a></dd>
-                     <dd><a href="#panel2">Tab 2</a></dd>
-                     <dd><a href="#panel3">Tab 3</a></dd>
-                     <dd><a href="#panel4">Tab 4</a></dd>
+                     <dd><a href="#panel2">Description 2</a></dd>
+                     <dd><a href="#panel3">Description 3</a></dd>
                  </dl>
 
                  <div class="tabs-content">
@@ -68,16 +114,14 @@
                      </div>
 
                      <div class="content" id="panel2">
-                         <p>This is the second panel of the basic tab example. This is the second panel of the basic tab example.</p>
+                          <p>{{ $product->description_2 }}</p>
                      </div>
 
                      <div class="content" id="panel3">
-                         <p>This is the third panel of the basic tab example. This is the third panel of the basic tab example.</p>
+                          <p>{{ $product->description_3 }}</p>
                      </div>
 
-                     <div class="content" id="panel4">
-                         <p>This is the fourth panel of the basic tab example. This is the fourth panel of the basic tab example.</p>
-                     </div>
+
                  </div>
 
              </div>

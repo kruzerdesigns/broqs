@@ -5,14 +5,15 @@ class StoreController extends BaseController{
     public function __construct(){
         parent::__construct();
         $this->beforeFilter('csrf',array('on' =>'post'));
-        $this->beforeFilter('auth',array('only'=>array('postAddtoCart','getCart','getRemoveitem')));
+        $this->beforeFilter('auth',array('only'=>array('postAddtocart','getCart','getRemoveitem')));
         $this->user = Auth::user();
 
     }
 
     public function getIndex(){
         return View::make('store.index')
-            ->with('products',Product::take(4)->orderBy('created_at','DESC')->get());
+            ->with('products',Product::take(4)->orderBy('created_at','DESC')->get())
+            ->with('home',Content::where('url','=','home')->first());
     }
 
     public function getView($url){
@@ -41,13 +42,13 @@ class StoreController extends BaseController{
         $product = Product::find(Input::get('id'));
         $quantity = Input::get('quantity');
 
-     /*   Cart::insert(array(
-           'id'         =>$product->id,
-            'name'      =>$product->title,
-            'price'     =>$product->price,
-            'quantity'  =>$quantity,
-            'image' =>$product->image
-        )); */
+        $size = 'small';
+        if(Input::get('size'))
+        {
+            $size = Input::get('size');
+        }
+
+
 
         /* Check if theres anything in the basket */
         $checkBasket = Basket::where('user_id','=',Auth::id())
@@ -57,7 +58,7 @@ class StoreController extends BaseController{
         {
             $checkBasket->quantity = $checkBasket->quantity + $quantity;
             $checkBasket->total_price = $checkBasket->total_price + $product->price;
-
+            $checkBasket->size = $size;
             $checkBasket->save();
 
 
@@ -69,6 +70,7 @@ class StoreController extends BaseController{
             $basket->user_id = Auth::id();
             $basket->product_id = $product->id;
             $basket->quantity = $quantity;
+            $basket->size = $size;
             $basket->paid = 0;
             $basket->total_price = $product->price;
 
@@ -84,7 +86,7 @@ class StoreController extends BaseController{
         $basket = DB::table('basket')
                     ->join('products','basket.product_id','=','products.id')
                     ->select('basket.id as bas_id', 'user_id', 'product_id', 'quantity', 'paid', 'products.id', 'category_id',
-                        'title', 'url', 'price', 'image_1','total_price')
+                        'title', 'url', 'price', 'image_1','total_price','size')
                     ->where('user_id','=',Auth::id())
                     ->where('paid','=',0)->get();
 
@@ -147,7 +149,6 @@ class StoreController extends BaseController{
         echo Input::get('email').'<br>';
         echo Input::get('message').'<br>';*/
     }
-
 
     public function getPages($url){
         $content = Content::where('url','=',$url)->where('nav','=','0')->first();
@@ -272,6 +273,15 @@ class StoreController extends BaseController{
 
     }
 
+    public function getAllproducts()
+    {
+        $products = Product::all();
+        return View::make('store.armoury')->with('products',$products);
+    }
 
+    public function getColour()
+    {
+        return View::make('store.colour');
+    }
 
 }

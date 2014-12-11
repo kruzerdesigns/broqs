@@ -7,14 +7,14 @@
     <section class="row">
          <!--<form action="https://www.paypal.com/cgi-bin/webscr" method="POST">-->
 
-            <div class="small-12 medium-7 columns">
 
                 <table role="grid">
                     <thead>
                         <tr>
-                            <th>Product Name</th>
+                            <th width="250">Product Name</th>
                             <th>Price</th>
-                            <th>Quantity</th>
+                            <th>Qty</th>
+                            <th>Size</th>
                             <th>Subtotal</th>
                         </tr>
                     </thead>
@@ -31,6 +31,7 @@
                             </td>
                             <td>&pound; {{ $product->price }}</td>
                             <td>{{ $product->quantity }}</td>
+                            <td>{{ $product->size }}</td>
                             <td>
                                 &pound;{{ $product->total_price }}
 
@@ -41,9 +42,10 @@
 
                     </tbody>
                 </table>
-            </div>
 
-            <div class="small-12 medium-5 columns">
+            </section>
+            <section class="row">
+                <div class="medium-5 column">
                 <div class="payment">
                     <div class="payment-price">
                           Total &pound;{{ $total }}
@@ -64,10 +66,10 @@
                        <input type="submit" value="Checkout with paypal" class="button small info"> -->
                     </div>
                 </div>
-            </div>
-        </form>
 
-    </section>
+        </form>
+            </div>
+            </section>
 
     @else
 

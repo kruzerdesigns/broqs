@@ -32,6 +32,10 @@
                             </div>
 
                             <div class="row">
+                                    <b>Size:</b> {{ $order->size }}
+                            </div>
+
+                            <div class="row">
                                   <b>Sub total:</b>  {{ $order->total_price }}
                             </div>
 

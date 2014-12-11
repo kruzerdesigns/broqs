@@ -3,11 +3,20 @@
 a {color: #B92424}
 a:hover {color: #4E0E0E;}
 .padding{padding: 10px 0;}
+.padding-left{padding-left: 10px}
 .padding-top{padding-top: 20px;}
 .padding-bottom{padding-bottom: 20px;}
+body{padding-bottom: 0 !important;}
+
+
+.main-wrapper{ min-height:100%;    position:relative;}
+.full-content{ padding:10px;    padding-bottom:100px;}
 
 .button {background: #B92424 ; border-color: #B92424 ;}
 .button:hover {background: #761010 ; border-color: #761010 ;}
+.button:focus {
+    background-color: #761010 !important;  border-color: #761010 !important;
+}
 
 /* Header */
 header.main-nav{margin-bottom: 20px;}
@@ -16,13 +25,33 @@ header.main-nav{margin-bottom: 20px;}
 .top-nav ul li a { font-size: 14px !important;}
 .top-bar-section ul.title-area li h1 a {   background: #B92424 !important;}
 .top-bar .button, .top-bar button {     padding-top: 0;}
+.button.tiny.grey {
+    line-height: 10px;
+    background: #7A7A7A;
+}
+.top-bar-section hr {border-top-color: #B92424; border-top-width: 1px}
+.button.tiny.soft-blue {
+    line-height: 10px;
+    background: #005299;
+}
+@media only screen and (min-width: 40.063em) {
+    .top-bar-section .right li .dropdown {
+        left: 0;
+        width: 300px !important;
 
+    }
+}
+
+.top-bar-section ul li ul li {     background: #e5e5e5 !important;}
 /* index */
 .products-index img.feature{ width:50%;}
 
 /* products */
-.product-view img {width:74%;}
+.product-view img {width:71%;}
 .product-related img.feature  {width:74%;}
+li.visible a:focus {    color: transparent;}
+.armoury{bottom: -195px;background: #453E3E; position: absolute; width: 100%; padding: 15px; color: #ededed}
+.products.all a {position: relative}
 
 
 /* cart */
@@ -37,9 +66,14 @@ header.main-nav{margin-bottom: 20px;}
 .checkout-name{color: #aaa; font-size: 20px}
 .checkout-border{border-top: 1px solid #aaa;}
 .checkout-section{padding: 20px;}
-/* Footer*/
-footer{background: #eee; margin-top:20px;}
 
+
+/* Footer*/
+footer{background: #eee; margin-top:20px; bottom:0;  }
+.footer-wrapper{position:absolute;    bottom:0;    left:0; width: 100%;}
+.footer{padding-top: 15px;}
+.footer a{color: #000030; font-size: 14px;}
+.footer a:hover{color: #761010; }
 
 
 

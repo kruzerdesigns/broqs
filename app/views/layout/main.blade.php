@@ -19,7 +19,9 @@
 
 </head>
 <body>
+    <div class="main-wrapper">
     <main>
+
         <header class="main-nav">
 
             <section class="grey top-nav">
@@ -78,7 +80,41 @@
                             {{ Form::close() }}
                         </li>
 
-                        <li><a href="<?=url()?>/store/cart">Basket ({{ $basket }})</a></li>
+                        <li class="show-for-medium-down"><a href="<?=url()?>/store/cart">Basket ({{ $basket }})</a></li>
+
+
+
+                        <li class="has-dropdown">
+                            <a href="#">Basket ({{ $basket }})</a>
+                            @if($basket > 0)
+                                <ul class="dropdown">
+                                  <li class="padding">
+                                        @foreach($basket_drop as $db)
+                                        <div class="row">
+                                            <div class="large-4 columns">
+                                                {{ HTML::image($db->image_1,$db->title) }}
+                                            </div>
+                                            <div class="large-8 columns">
+                                                <b>{{ $db->title }} </b><br>
+                                                <b>&pound;{{ $db->total_price }}</b><br>
+                                                 {{ $db->size }}<br>
+                                                 {{ $db->quantity }}
+
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        @endforeach
+                                        <div class="row padding-left">
+                                            {{ HTML::link(url().'/store/cart','View Basket',array('class'=>'button tiny grey')) }}
+                                            {{ HTML::link('store/checkout','Checkout',array('class'=>'button tiny soft-blue')) }}
+                                        </div>
+                                  </li>
+
+                                </ul>
+                            @endif
+                        </li>
+
+
                     </ul>
 
                     <!-- Left of nav -->
@@ -96,6 +132,7 @@
         @yield('promo')
         @yield('search-keyword')
 
+        <div class="full-content">
         <section class="row">
             @if (Session::has('success'))
                    <p class="alert-box success">{{ Session::get('success') }}</p>
@@ -110,37 +147,29 @@
 
 
         @yield('content')
-
+        </div>
         <!--Footer -->
+        <div class="footer-wrapper">
         <footer>
 
-            <section class="row hidden-for-medium-down footer">
+            <section class="row footer">
 
-                <div class="large-4 columns">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="#">Sign In</a></li>
-                        <li><a href="#">Sign Up</a></li>
-                        <li><a href="#">Order History</a></li>
-                        <li><a href="#">Shopping Cart</a></li>
+                <div class="large-8 large-centered columns ">
+
+                    <ul class="inline-list" >
+                        <li><a href="#">Your Account</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Delivery </a></li>
+                        <li><a href="#">Returns </a></li>
+                        <li><a href="#">Q&A  </a></li>
+                        <li>{{ HTML::image(url().'/img/payment-sprite.png','Payments') }}</li>
+
                     </ul>
                 </div><!-- end my-account -->
 
-                <div class="large-4 columns">
-                    <h4>INFORMATION</h4>
-                    <ul>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div><!-- end info -->
 
-                <div class="large-4 columns end">
-                    <h4>EXTRAS</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div><!-- end extras -->
+
+
 
             </section><!-- end links -->
 
@@ -149,13 +178,12 @@
 
 
         </footer>
-
+        </div>
     </main>
-
+    </div>
 
     {{ HTML::script('js/plugins.js') }}
     {{ HTML::script('js/foundation.min.js') }}
-    {{ HTML::script('js/foundation.reveal.js') }}
     {{ HTML::script('js/main.js') }}
 
 </body>
