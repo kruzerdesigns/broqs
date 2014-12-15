@@ -34,7 +34,7 @@
                                     <li>{{ HTML::link('admin','Admin') }}</li>
                                 @endif
                                 <li>
-                                    <a href="">{{ HTML::link('users/account', Auth::user()->firstname) }}</a>
+                                    <a href="">{{ HTML::link('account', 'My Account') }}</a>
                                 </li>
                                 <li>{{ HTML::link('users/signout','Log Out') }}</li>
 
@@ -157,7 +157,7 @@
                 <div class="large-8 large-centered columns ">
 
                     <ul class="inline-list" >
-                        <li><a href="#">Your Account</a></li>
+                        <li><a href="{{ url('account') }}">Your Account</a></li>
                         <li><a href="#">Privacy</a></li>
                         <li><a href="#">Delivery </a></li>
                         <li><a href="#">Returns </a></li>

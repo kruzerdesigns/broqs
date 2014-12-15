@@ -5,7 +5,7 @@ class StoreController extends BaseController{
     public function __construct(){
         parent::__construct();
         $this->beforeFilter('csrf',array('on' =>'post'));
-        $this->beforeFilter('auth',array('only'=>array('postAddtocart','getCart','getRemoveitem')));
+        $this->beforeFilter('auth',array('only'=>array('postAddtocart','getCart','getRemoveitem','getAccount')));
         $this->user = Auth::user();
 
     }
@@ -267,7 +267,7 @@ class StoreController extends BaseController{
 
     }
 
-    public function  getComplete(){
+    public function getComplete(){
 
         return View::make('store.complete');
 
@@ -283,5 +283,6 @@ class StoreController extends BaseController{
     {
         return View::make('store.colour');
     }
+
 
 }

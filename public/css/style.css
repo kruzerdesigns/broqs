@@ -69,6 +69,11 @@ li.visible a:focus {    color: transparent;}
 .checkout-border{border-top: 1px solid #aaa;}
 .checkout-section{padding: 20px;}
 
+/* Account */
+.account-section{background: #eee;margin-bottom: 20px !important; width: auto; overflow: auto; padding: 20px;}
+.account-content{background: #fff; padding: 10px !important;}
+.breadcrumb{font-size: 12px; padding: 5px;}
+
 
 /* Footer*/
 footer{background: #eee; margin-top:20px; bottom:0;  }
