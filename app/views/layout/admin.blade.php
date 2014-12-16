@@ -70,6 +70,7 @@
                   <li><a href="<?=url()?>/admin/products"><i class="fa fa-file-text-o"></i>  &nbsp;&nbsp;Products</a></li>
                   <li><a href="<?=url()?>/admin/categories"><i class="fa fa-file-archive-o"></i>  &nbsp;&nbsp;Categories</a></li>
                   <li><a href="<?=url()?>/admin/orders"><i class="fa fa-credit-card"></i>  &nbsp;&nbsp;Orders</a></li>
+                  <li><a href="<?=url()?>/admin/colour"><i class="fa fa-file-image-o"></i>  &nbsp;&nbsp;Colour gallery</a></li>
                 </ul>
             </div>
           </nav>

@@ -34,6 +34,15 @@
                 </div>
             @endif
 
+            @if (Session::has('error'))
+
+                            <div data-alert class="alert-box alert radius">
+                              {{ Session::get('error') }}
+                              <a href="#" class="close">&times;</a>
+                            </div>
+
+                        @endif
+
             {{ Form::open(array('url'=>'account/settings', 'data-abide' => true)) }}
                 <div class="name-field">
                     <label>First Name <span class="soft-red">*</span>
@@ -64,9 +73,11 @@
                 {{ Form::label('password') }}
                 {{ Form::password('password') }}
 
-
+                <div class="name-field">
                 {{ Form::label('password_confirmation','Confirm Password') }}
-                {{ Form::password('password_confirmation')}}
+                <input type="password" id="confirmPassword" name="password_confirmation" data-equalto="password" >
+                 <small class="error">Passwords don't match</small>
+                </div>
 
                 {{ Form::submit('Save Changes', array('class'=>'button tiny')) }}
 

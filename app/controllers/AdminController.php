@@ -547,7 +547,6 @@ class AdminController extends BaseController{
      ** Orders *****
      *******************/
 
-
     public function getOrders()
     {
         $order = DB::table('orders')
@@ -662,4 +661,8 @@ class AdminController extends BaseController{
 
 
     }
+
+
+
+
 }

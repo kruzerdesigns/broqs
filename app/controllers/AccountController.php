@@ -37,6 +37,7 @@ class AccountController extends BaseController{
     }
 
     public function getSettings() {
+
         return View::make('account.settings')
             ->with('account',$this->user);
     }
@@ -87,14 +88,21 @@ class AccountController extends BaseController{
                             ->with('success', 'Settings updated');
                     } else {
                         return Redirect::to('account/settings')
-                            ->withErrors($validator)
-                            ->with('error', 'Something went wrong');
+                               ->with('error', 'Something went wrong');
                     }
+                }else{
+                    return Redirect::to('account/settings')
+                        ->with('error', "Your old passwords don't match");
                 }
+
             }
 
 
+
         }
+
+
+
 
 
 
@@ -185,7 +193,7 @@ class AccountController extends BaseController{
         $getID = Basket::find($id);
 
         if(empty($getID)){
-            return View::make('404');
+            return Response::view('404', array(), 404);
         }
 
         $order =   DB::table('basket')
