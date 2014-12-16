@@ -5,7 +5,7 @@
     <h1>Armoury</h1>
 
     @foreach($products as $product)
-    <div class="large-4 columns padding-bottom">
+    <div class="large-4 columns padding-bottom left">
         <div class="products all">
             <a href="http://localhost/broq/public/store/product/{{ $product->url }}">
                 {{ HTML::image($product->image_1,$product->title, array('class'=>'feature','width'=>'240')) }}

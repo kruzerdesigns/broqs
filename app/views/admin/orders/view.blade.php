@@ -9,12 +9,11 @@
         <h3 class="soft-red">Products Ordered</h3>
 
 
-
             <div class="large-12">
                 <div class="row">
 
                  @foreach($orders as $order)
-                    <div class="large-4 columns">
+                    <div class="large-4 columns left">
 
                         <div class="large-6 columns">
                             {{ HTML::image($order->image_1, $order->title) }}
@@ -50,7 +49,7 @@
 
 
     </section>
-
+    <br>
     <!-- Customer details -->
     <section class="row padding">
 
@@ -71,6 +70,7 @@
                 <b>Telephone:</b> {{ $user->telephone }}
             </div>
 
+            <br>
             <div class="row">
 
                 <h4 class="soft-red">Delivery Details</h4>
@@ -142,7 +142,7 @@
 
     </section>
 
-
+    <br>
     <section class="row padding">
      <h3 class="soft-red">Final Order details</h3>
 

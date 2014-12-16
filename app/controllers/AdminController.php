@@ -340,6 +340,7 @@ class AdminController extends BaseController{
         $product = Product::find(Input::get('id'));
 
         if($product){
+
             File::delete('public/'.$product->image);
             $product->delete();
             return Redirect::to('admin/products/index')
@@ -363,6 +364,20 @@ class AdminController extends BaseController{
 
         return Redirect::to('admin/products/index')
             ->with('error','Invalid Product');
+    }
+
+    public function postRemoveimg()
+    {
+        $product = Product::find($id);
+        $album = Album::find($image->al_id);
+
+        $path = public_path().$image->image;
+        if($image){
+            File::delete($path);
+            $image->delete();
+            return Redirect::to('admin/colour/'.$album->url)
+                ->with('success', 'Image Deleted');
+        }
     }
 
 
@@ -645,15 +660,6 @@ class AdminController extends BaseController{
                 $message->to($user->email, $user->firstname)->subject('Order has been dispatched');
             });
 
-
-        //delete basket after processed order
-        $basket = Basket::where('stripe_token','=',$token)->get();
-        foreach($basket as $bas)
-        {
-            $delete = Basket::find($bas->id);
-
-            $delete->delete();
-        }
 
 
         return Redirect::to('admin/orders')

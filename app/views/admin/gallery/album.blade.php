@@ -1,7 +1,6 @@
 @extends('layout.admin')
 
 @section('content')
-
 <section class="row">
     @if($errors->has())
         <div class="alert-box alert" data-alert>
@@ -15,11 +14,11 @@
         </div>
     @endif
 
-    <div class="large-6 columns">
-        <h1>Colour Gallery</h1>
+    <div class="large-8 columns">
+        <h1>Photo album for <span class="soft-red">{{ $album->title }}</span></h1>
     </div>
     <div class="large-3 columns end">
-        <a href="#" class="button small info" data-reveal-id="create">Add new gallery</a>
+        <a href="#" class="button small info" data-reveal-id="create">Add new image</a>
     </div>
 
     <hr>
@@ -28,15 +27,21 @@
 
 <section class="row">
 
-    @foreach($albums as $album)
+
+    @foreach($images as $image)
         <div class="large-4 columns left">
 
             <div class="colour-album">
                 <div class="album-cover">
-                    <a href="{{ url().'/admin/colour/'.$album->url }}">
-                        {{ HTML::image($album->image,$album->title) }}
+                    <div class="remove-icon">
+                        <a href="{{ url().'/admin/colour/remove/'.$image->id }}">
+                           <i class="fa fa-times"></i>
+                         </a>
+                    </div>
+                    <a href="{{ url().'/admin/colour/edit/'.$image->id }}">
+                        {{ HTML::image($image->image,$image->title) }}
                         <div class="album-name">
-                            {{ $album->title }}
+                            {{ $image->title }}
                         </div>
                     </a>
                 </div>
@@ -48,11 +53,12 @@
 
 </section>
 
+
 <div id="create" class="reveal-modal" data-reveal>
     <a class="close-reveal-modal">&#215;</a>
-    <h2>New gallery</h2>
+    <h2>New image for {{ $album->title }}</h2>
 
-       {{ Form::open(array('url' => 'admin/colour/newcolour', 'files'=>true)) }}
+       {{ Form::open(array('url' => 'admin/colour/album', 'files'=>true)) }}
            {{ Form::label('title') }}
            {{ Form::text('title') }}
 
@@ -62,12 +68,14 @@
            {{ Form::label('image', 'Choose an Image',array('class'=>'strong')) }}
            {{ Form::file('image', array('multiple'=>true)) }}
 
+            {{ Form::hidden('id',$album->id) }}
+            {{ Form::hidden('album_url',$album->url) }}
 
-
-           {{ Form::submit('Create Album', array('class'=>'button small')) }}
+           {{ Form::submit('Create image', array('class'=>'button small')) }}
        {{ Form::close() }}
 
 
 </div>
+
 
 @stop

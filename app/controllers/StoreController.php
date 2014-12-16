@@ -279,10 +279,6 @@ class StoreController extends BaseController{
         return View::make('store.armoury')->with('products',$products);
     }
 
-    public function getColour()
-    {
-        return View::make('store.colour');
-    }
 
 
 }

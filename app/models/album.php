@@ -2,10 +2,15 @@
 
 class Album extends Eloquent{
 
+    protected $table = 'album';
+    protected $fillable = array('title','description','image','url');
 
-    protected $fillable = array('title','description','image');
+    public static $rules = array(
+        'title' => 'required',
+        'description' => 'required',
+        'image' => 'required'
 
-    public static $rules = array('title' => 'required');
+    );
 
 
 }
