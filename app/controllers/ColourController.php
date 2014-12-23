@@ -17,7 +17,14 @@ class ColourController extends BaseController
             ->with('albums',$albums);
     }
 
-    public function getAlbum(){
+    public function getAlbum($url){
+        $album = Album::where('url',$url)->first();
+
+        $images = Imagess::where('al_id',$album->id)->get();
+
+        return View::make('gallery.album')
+            ->with('images',$images)
+            ->with('album',$album);
 
     }
 

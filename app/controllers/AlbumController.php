@@ -46,6 +46,18 @@ class AlbumController extends BaseController{
 
             $album->save();
 
+            $al = Album::where('url',$url)->first();
+
+            // create image in images table
+            $image = new Imagess();
+
+            $image->title = ucfirst(Input::get('title'));
+            $image->description = Input::get('description');
+            $image->al_id = $al->id;
+            $image->image = $imgUrl.'/'.$filename;
+
+            $image->save();
+
             return Redirect::to('admin/colour')
                 ->withErrors($validator)
                 ->with('success','New album created');
@@ -127,7 +139,7 @@ class AlbumController extends BaseController{
 
     }
 
-    public function postImage($id){
+    public function postImage(){
 
         $validator = Validator::make(Input::all(),Imagess::$rules);
 
@@ -141,7 +153,7 @@ class AlbumController extends BaseController{
             //Convert whitespaces and underscore to dash
             $url = preg_replace("/[\s_]/", "-", $url);
 
-            $image = Imagess::find($id);
+            $image = Imagess::find(Input::get('id'));
 
             $image->title = ucfirst(Input::get('title'));
             $image->description = Input::get('description');
@@ -162,9 +174,9 @@ class AlbumController extends BaseController{
 
             $image->save();
 
-            return Redirect::to('admin/colour/'.$albums_url)
+            return Redirect::to('admin/colour/edit/'.Input::get('id'))
                 ->withErrors($validator)
-                ->with('success','New image added');
+                ->with('success','Image updated');
 
 
         }
@@ -186,5 +198,27 @@ class AlbumController extends BaseController{
             return Redirect::to('admin/colour/'.$album->url)
                 ->with('success', 'Image Deleted');
         }
+    }
+
+    public function getRemovealbum($id){
+
+        $album = Album::find($id);
+        $images = Imagess::where('al_id',$album->id)->get();
+
+        foreach($images as $image)
+        {
+            $path = public_path().$image->image;
+            if($image){
+                File::delete($path);
+                $image->delete();
+
+            }
+        }
+        $directory = public_path().'/img/album/'.$album->url;
+        File::deleteDirectory($directory);
+        $album->delete();
+
+        return Redirect::to('admin/colour/')
+            ->with('success', 'Album Deleted');
     }
 }

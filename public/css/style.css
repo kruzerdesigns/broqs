@@ -8,7 +8,21 @@ a:hover {color: #4E0E0E;}
 .padding-bottom{padding-bottom: 20px;}
 body{padding-bottom: 0 !important;}
 .blank-div{width: 100%;}
+a:active, a:hover, a:focus {
+    outline: 0;
+}
+@font-face {
+    font-family: 'Bree';
+    src: url('../fonts/Bree.otf');
+}
 
+@font-face {
+    font-family: 'Alegreya';
+    src: url('../fonts/AlegreyaSans-Medium.otf');
+}
+
+h1,h2,h3,h4 {font-family: 'Bree', Fallback, sans-serif;}
+body{font-family: 'Alegreya', Fallback, sans-serif;}
 
 .main-wrapper{ min-height:100%;    position:relative;}
 .full-content{ padding:10px;    padding-bottom:100px;}
@@ -46,6 +60,7 @@ header.main-nav{margin-bottom: 20px;}
 .top-bar-section ul li ul li {     background: #e5e5e5 !important;}
 /* index */
 .products-index img.feature{ width:50%;}
+.slider .slides li img { width: 100% !important;    height: 400px !important;}
 
 /* products */
 .product-view img {width:71%;}
@@ -79,6 +94,29 @@ li.visible a:focus {    color: transparent;}
 .album-cover{position: relative;}
 .album-cover img{ width: 100%; height: 200px;}
 .album-name{position: absolute;bottom: 0;width:100%; background:#6E0B0B; color: #B8B8B8; padding: 5px; text-align: center;}
+#slider .slides li img { width: 100% !important;    height: 500px !important;}
+#slider .slides li { min-height: 530px; position: relative;}
+#slider .slides .description  { position: absolute; background: #DD8181; bottom: 0; width: 100%; padding: 5px; margin-top: 10px; }
+#slider .slides .description p { font-size: 14px !important; margin: 0;}
+#carousel .slides > li[style] img { height: 100px; !important;   cursor: pointer;}
+.album-description{ font-size: 12px;}
+
+/* spectrum */
+.tabs-content #White {background-color: #FDFDFD !important; padding: 5px;}
+.tabs-content #Grey {background-color: #eee !important; padding: 5px; }
+.tabs-content #Green {background-color: #81DD9B !important; padding: 5px;}
+.tabs-content #Red {background-color: #f4645f  !important; padding: 5px;}
+
+.tabs dd.white a {background-color: #FDFDFD  !important;  border-left: solid 1px #E8E8E8;}
+.tabs dd.grey a {background-color: #eee  !important;}
+.tabs dd.green a {background-color: #81DD9B  !important;}
+.tabs dd.red a {background-color: #f4645f  !important;}
+
+.spec-name {cursor: pointer;}
+
+.tabs dd a{ border-top: solid 1px #E8E8E8; border-right: solid 1px #E8E8E8;}
+.spec-container .tabs-content{ border-right: solid 1px #E8E8E8;border-left: solid 1px #E8E8E8;border-bottom: solid 1px #E8E8E8;}
+.spec-container{margin: 5px;}
 
 
 /* Footer*/

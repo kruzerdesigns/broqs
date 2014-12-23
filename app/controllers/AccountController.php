@@ -30,6 +30,11 @@ class AccountController extends BaseController{
                 ->get();
         }
 
+        if(empty($outstanding))
+        {
+            $outstanding = null;
+        }
+
 
         return View::make('account.account')
             ->with('outstanding',$outstanding)
@@ -179,6 +184,11 @@ class AccountController extends BaseController{
                 ->groupBy('stripe_token')
 
                 ->get();
+        }
+
+        if(empty($outstanding))
+        {
+            $outstanding = null;
         }
 
 

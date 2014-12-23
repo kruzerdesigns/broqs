@@ -17,20 +17,29 @@
                 </tr>
             </thead>
             <tbody>
+                @if($basket)
 
-                @foreach($basket as $b)
+                    @foreach($basket as $b)
+                        <tr>
+
+                            <td>{{ $b->firstname }} {{ $b->lastname }}</td>
+                            <td>{{ $b->email }}</td>
+                            <td> &pound;{{ $b->overall_price }}</td>
+                             <?php   $date = new DateTime($b->updated_last);  ?>
+                            <td>{{ $date->format('D d M Y H:i') }}</td>
+                            <td><a href="{{ url('admin/orders/view/'.$b->basID) }}" class="button tiny success"><i class="fa fa-pencil"></i></a></td>
+
+                        </tr>
+
+                    @endforeach
+
+                @else
                     <tr>
-
-                        <td>{{ $b->firstname }} {{ $b->lastname }}</td>
-                        <td>{{ $b->email }}</td>
-                        <td> &pound;{{ $b->overall_price }}</td>
-                         <?php   $date = new DateTime($b->updated_last);  ?>
-                        <td>{{ $date->format('D d M Y H:i') }}</td>
-                        <td><a href="{{ url('admin/orders/view/'.$b->basID) }}" class="button tiny success"><i class="fa fa-pencil"></i></a></td>
-
+                       <td colspan="5">No orders have been made</td>
                     </tr>
 
-                @endforeach
+                @endif
+
 
             </tbody>
         </table>

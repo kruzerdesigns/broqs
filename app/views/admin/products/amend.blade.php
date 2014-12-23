@@ -9,7 +9,17 @@
             {{ HTML::link('admin/products','Back to all products') }}
         </div>
     </div>
-
+  @if($errors->has())
+                <div class="alert-box alert" data-alert>
+                    <p>Following errors have occurred</p>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <a href="#" class="close">&times;</a>
+                </div>
+            @endif
 
         {{ Form::open(array('url'=>'admin/productstamend','files'=>true)) }}
 

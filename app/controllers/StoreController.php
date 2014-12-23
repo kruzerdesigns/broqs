@@ -78,7 +78,7 @@ class StoreController extends BaseController{
         }
 
 
-        return Redirect::to('/');
+        return Redirect::back()->with('success','Product added to your basket');
 
     }
 
@@ -277,6 +277,17 @@ class StoreController extends BaseController{
     {
         $products = Product::all();
         return View::make('store.armoury')->with('products',$products);
+    }
+
+
+    /*
+     * Speqtrum
+     * */
+
+    public function getSpec(){
+
+        $specs = Speqtrum::all();
+        return View::make('spec.index')->with('specs',$specs);
     }
 
 

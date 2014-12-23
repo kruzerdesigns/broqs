@@ -582,6 +582,11 @@ class AdminController extends BaseController{
                 ->get();
         }
 
+        if(empty($basket))
+        {
+            $basket = null;
+        }
+
         $total = DB::table('basket')
             ->where('user_id','=',Auth::id())
             ->sum('total_price');
@@ -668,7 +673,90 @@ class AdminController extends BaseController{
 
     }
 
+    /********************
+     **** Spectrum *****
+     *******************/
 
+    public function getSpeqtrum()
+    {
+        $spec = Speqtrum::all();
+        return View::make('admin/spec.index')
+            ->with('specs',$spec);
+    }
+
+    public function postCreatespec()
+    {
+        $validator = Validator::make(Input::all(),Speqtrum::$rules);
+        $url              = Input::get('name');
+        $url = strtolower($url);
+        //Make alphanumeric (removes all other characters)
+        $url = preg_replace("/[^a-z0-9_\s-]/", "", $url);
+        //Clean up multiple dashes or whitespaces
+        $url = preg_replace("/[\s-]+/", " ", $url);
+        //Convert whitespaces and underscore to dash
+        $url = preg_replace("/[\s_]/", "-", $url);
+
+
+        if($validator->passes()){
+            $spec        = new Speqtrum();
+            $spec->name  = ucfirst(Input::get('name'));
+            $spec->url  = $url;
+            $spec->description_1  = Input::get('white');
+            $spec->description_2  = Input::get('grey');
+            $spec->description_3  = Input::get('green');
+            $spec->description_4  = Input::get('red');
+            $spec->save();
+
+
+            return Redirect::to('admin/speqtrum')
+                ->with('success','Content created');
+        }
+
+        return Redirect::to('admin/speqtrum')
+            ->with('error', 'Something went wrong')
+            ->withErrors($validator);
+
+    }
+
+    public function getSpeqtrumammend($id)
+    {
+        $spec = Speqtrum::where('url',$id)->first();
+        return View::make('admin/spec.ammend')
+            ->with('spec',$spec);
+    }
+
+    public function postSpeqtrumammend()
+    {
+        $validator = Validator::make(Input::all(),Speqtrum::$rules);
+        $url              = Input::get('name');
+        $url = strtolower($url);
+        //Make alphanumeric (removes all other characters)
+        $url = preg_replace("/[^a-z0-9_\s-]/", "", $url);
+        //Clean up multiple dashes or whitespaces
+        $url = preg_replace("/[\s-]+/", " ", $url);
+        //Convert whitespaces and underscore to dash
+        $url = preg_replace("/[\s_]/", "-", $url);
+
+
+        if($validator->passes()){
+            $spec        = Speqtrum::find(Input::get('id'));
+            $spec->name  = ucfirst(Input::get('name'));
+            $spec->url  = $url;
+            $spec->description_1  = Input::get('white');
+            $spec->description_2  = Input::get('grey');
+            $spec->description_3  = Input::get('green');
+            $spec->description_4  = Input::get('red');
+            $spec->save();
+
+
+            return Redirect::to('admin/speqtrum/amend/'.$url)
+                ->with('success','Content changed');
+        }
+
+        return Redirect::to('admin/speqtrum/amend/'.$url)
+            ->with('error', 'Something went wrong')
+            ->withErrors($validator);
+    }
 
 
 }

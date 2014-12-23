@@ -130,11 +130,11 @@
 </section>
 
 <section class="row padding">
-
+<hr>
     <h3> Related Products</h3>
 
     @foreach($related as $rel)
-            <div class="large-3 columns product-related">
+            <div class="large-3 columns product-related left">
                     <div class="products">
                         <a href="http://localhost/broq/public/store/product/{{ $rel->url }}">
                             {{ HTML::image($rel->image_1,$rel->title, array('class'=>'feature','width'=>'240')) }}

@@ -33,6 +33,11 @@
 
             <div class="colour-album">
                 <div class="album-cover">
+                    <div class="remove-icon">
+                        <a href="{{ url().'/admin/colour/removealbum/'.$album->id }}">
+                           <i class="fa fa-times"></i>
+                         </a>
+                    </div>
                     <a href="{{ url().'/admin/colour/'.$album->url }}">
                         {{ HTML::image($album->image,$album->title) }}
                         <div class="album-name">

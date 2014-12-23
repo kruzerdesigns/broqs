@@ -5,7 +5,20 @@
     <section class="row padding">
         <div class="large-8 large-centered columns">
             <div class="slider">
-                {{ HTML::image('img/slider.jpg','Slider') }}
+                <div class="flexslider">
+                  <ul class="slides">
+                    <li>
+                      <img src="http://localhost/broq/public/img/slider.jpg" />
+                    </li>
+                    <li>
+                      <img src="http://localhost/broq/public/img/album/test/test_cover.jpg" />
+                    </li>
+                    <li>
+                      <img src="http://localhost/broq/public/img/album/testtet/testtet_cover.jpg" />
+                    </li>
+
+                  </ul>
+                </div>
             </div>
         </div>
 

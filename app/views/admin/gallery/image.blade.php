@@ -26,7 +26,7 @@
 
 <section >
 
-    {{ Form::open(array('url'=>'admin/image','files'=>true)) }}
+    {{ Form::open(array('url'=>'admin/colour/image','files'=>true)) }}
 
         {{ Form::label('title','Image title',array('class'=>'strong')) }}
         <div class="row">
@@ -64,6 +64,8 @@
                 {{ Form::file('image') }}
             </div>
         </div>
+        {{ Form::hidden('id',$image->id) }}
+        {{ Form::submit('Update',array('class'=>'button small success')) }}
 
     {{ Form::close() }}
 

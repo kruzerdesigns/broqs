@@ -12,6 +12,7 @@
    <!-- Stylesheets -->
    {{ HTML::style('css/normalize.css') }}
    {{ HTML::style('css/foundation.min.css') }}
+   {{ HTML::style('css/flexslider.css') }}
    {{ HTML::style('css/style.css') }}
    {{ HTML::script('js/vendor/modernizr-2.6.2.min.js') }}
 
@@ -184,6 +185,7 @@
 
     {{ HTML::script('js/plugins.js') }}
     {{ HTML::script('js/foundation.min.js') }}
+    {{ HTML::script('js/jquery.flexslider-min.js') }}
     {{ HTML::script('js/main.js') }}
 
 </body>

@@ -7,7 +7,6 @@ class Imagess extends Eloquent{
 
     public static $rules = array(
         'title' => 'required',
-        'image' => 'required',
         'description' => 'required'
     );
 
